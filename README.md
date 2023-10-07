@@ -22,7 +22,7 @@ To run the pipeline locally, ensure that you have Docker installed and running o
 
 To configure the pipeline, specify the pipeline configuration using two json files:
 - Pipeline config: Specify steps to be executed in the pipeline. An example pipeline config can be found in `transparency-engine-main\python\transparency-engine\samples\config\pipeline.json`
-- Steps config: Specify configurations for each step of the pipeline. An example steps config can be found in `transparency-engine-main\python\transparency-engine\samples\config\steps.json.
+- Steps config: Specify configurations for each step of the pipeline. An example steps config can be found in `transparency-engine-main\python\transparency-engine\samples\config\steps.json'.
 
 To launch the pipeline's Docker container, execute the following command from the root of the project:
 ```bash
