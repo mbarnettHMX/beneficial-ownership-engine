@@ -9,6 +9,7 @@ We will need:
 - [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/),
 - [Helm](https://helm.sh/)
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) installed locally installed.
+- [Docker](https://docs.docker.com/engine/install/)
 
 ## 1. Initial setup
 
@@ -132,6 +133,12 @@ We need to attach our ACR to AKS, so the cluster can read the images from the re
 
 ### 4.3. (If you're running this manually, without the pipeline)
 
+#### Login to acr first 
+
+```bash
+> az acr login -n {ACR_NAME}
+```
+
 #### Deploy to your acr:
 
 `cd javascript/webapp && yarn install && yarn bundle`
@@ -197,7 +204,34 @@ Once you have the file properly set, create the namespace for the oauth service 
 
 ## 6. Create chart configuration file
 
-The default configuration for the `causal-services`' chart can be seen at [`values.yaml`](../config/helm/causal-services/values.yaml). We will need to update a few values according to what we have just created and configured. To do so, let's create a new YAML file (`values.deploy.yaml`) containing the values we need to update (replace the values with `{}` with the proper configuration):
+The default configuration for the `causal-services`' chart can be seen at [`values.yaml`](../config/helm/causal-services/values.yaml). We will need to update a few values according to what we have just created and configured. To do so, let's create a new YAML file (`values.prod.yaml`) containing the values we need to update (replace the values with `{}` with the proper Aconfiguration):
+
+Also update values.yaml  at location helm/values.prod.yaml
+Update the following values already present in the file.
+
+
+```yaml
+domain: { DOMAIN }
+
+backendImage: {ACR_NAME}.azurecr.io/backend:latest
+
+frontendImage: {ACR_NAME}.azurecr.io/frontend:latest
+
+
+  #
+  # frontend services and ingress
+  #
+  - namespace: frontend
+    services:
+      - name: frontend
+        image: "{{ .Values.frontendImage }}"
+        imagePullPolicy: "{{ .Values.imagesPullPolicy }}"
+        replicas: 1
+        containerPort: 8080    #update this to 3000
+        servicePort: 3005      #update this to 8080
+        path: /
+
+```
 
 ```yaml
 domain: { DOMAIN }
