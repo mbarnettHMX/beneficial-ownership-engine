@@ -204,9 +204,14 @@ Once you have the file properly set, create the namespace for the oauth service 
 
 ## 6. Create chart configuration file
 
-The default configuration for the `causal-services`' chart can be seen at [`values.yaml`](../config/helm/causal-services/values.yaml). We will need to update a few values according to what we have just created and configured. To do so, let's create a new YAML file (`values.prod.yaml`) containing the values we need to update (replace the values with `{}` with the proper Aconfiguration):
+The default configuration for the `causal-services`' chart can be seen at [`values.yaml`](../config/helm/causal-services/values.yaml). We will need to update a few values according to what we have just created and configured. To do so, update the  YAML file at location /helm/values.prod.yaml (`values.prod.yaml`) containing the values we need to update (replace the values with `{}` with the proper Aconfiguration):
 
-Also update values.yaml  at location helm/values.prod.yaml
+
+
+```yaml
+domain: { DOMAIN }
+```
+Also update values.yaml  at location helm/values.yaml
 Update the following values already present in the file.
 
 
@@ -231,10 +236,6 @@ frontendImage: {ACR_NAME}.azurecr.io/frontend:latest
         servicePort: 3005      #update this to 8080
         path: /
 
-```
-
-```yaml
-domain: { DOMAIN }
 ```
 
 ## 7. Install the `causal-services` chart
