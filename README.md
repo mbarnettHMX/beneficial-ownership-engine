@@ -1,6 +1,6 @@
-# Transparency Engine
+# Beneficial Ownership Engine
 
-Transparency Engine aims to detect and communicate the implicit structure of complex activities in real-world problem areas, in ways that support both situational awareness and targeted action. A potential application is to identify and counter adversarial activities (e.g., corruption) hidden within large-scale datasets.
+Beneficial Ownership Engine aims to detect and communicate the implicit structure of complex activities in real-world problem areas, in ways that support both situational awareness and targeted action. A potential application is to identify and counter adversarial activities (e.g., corruption) hidden within large-scale datasets.
 
 Given a collection of streaming data sources describing the attributes and actions of real-world entities, it uses a range of graph modeling, joint graph embedding [[1-3]](#references), and other statistical techniques to detect and explain the networks of entities most closely related to each entity. 
 
@@ -8,7 +8,8 @@ To prioritize the expert review of these entity networks, entities can be linked
 
 For each entity in the dataset, Transparency Engine generates a narrative report illustrating the detected relationships and review flags contributing to its overall review priority. In typical use, review of high-priority reports will help inform real-world actions targeted at either the entity or its broader network. 
 
-Transparency Engine consists of three components:
+Beneficial Ownership Engine consists of three components:
+
 - Pipeline: Python package that uses graph modeling techniques to detect networks of closely-related entities.
 - API: FastAPI interface that supports querying of the entity report using outputs produced by the entity relationship modeling pipeline.
 - Report: React-based application that enables viewing of the entity narrative report and exporting the report to a PDF file.
@@ -66,6 +67,7 @@ yarn start # run the webapp locally
 The webapp will be available at http://localhost:3000
 
 ## References
+
 1. Alexander Modell, Ian Gallagher, Joshua Cape, and Patrick Rubin-Delanchy. "Spectral embedding and the latent geometry of multipartite networks." arXiv preprint arXiv:2202.03945 (2022).
 
 2. Nick Whiteley, Annie Gray, and Patrick Rubin-Delanchy. "Matrix factorisation and the interpretation of geodesic distance." Advances in Neural Information Processing Systems 34 (2021): 24-38.
@@ -80,4 +82,3 @@ This project welcomes contributions and suggestions.  Most contributions require
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
