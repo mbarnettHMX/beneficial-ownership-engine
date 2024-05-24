@@ -14,6 +14,13 @@ provider "azurerm" {
     }
 }
 
+resource "random_string" "random" {
+  length  = 5
+  special = false
+  upper   = false
+  numeric  = false
+}
+
 resource "azurerm_resource_group" "rg" {
   name = var.resource_group_name
   location = var.location_for_resoruces
@@ -21,7 +28,7 @@ resource "azurerm_resource_group" "rg" {
 
 
 resource "azurerm_storage_account" "storage" {
-  name = var.storage_account_name
+  name = "bostorage${random_string.random.result}"
   location = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   account_tier = "Standard"
@@ -52,12 +59,12 @@ resource "azurerm_storage_container" "curated" {
 }
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "synapse_filesystem" {
-  name               = var.storage_account_name
+  name               = "bostorage${random_string.random.result}"
   storage_account_id = azurerm_storage_account.storage.id
 }
 
 resource "azurerm_synapse_workspace" "synapse" {
-  name                           = var.synapse_name
+  name                           = "bo-synapse${random_string.random.result}"
   location = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   storage_data_lake_gen2_filesystem_id = azurerm_storage_data_lake_gen2_filesystem.synapse_filesystem.id
@@ -92,7 +99,7 @@ resource "azurerm_synapse_firewall_rule" "allow_all" {
 
 
 resource "azurerm_synapse_spark_pool" "synapse_spark_pool" {
-  name                                = var.spark_pool_name
+  name                                = "bospark${random_string.random.result}"
   synapse_workspace_id                = azurerm_synapse_workspace.synapse.id
   node_size_family                    = "MemoryOptimized"
   node_size                           = "Medium"
@@ -132,7 +139,7 @@ resource "azurerm_synapse_linked_service" "adls_storage" {
   type                 = "AzureBlobFS"
   type_properties_json = <<JSON
 {
-  "url": "https://${var.storage_account_name}.dfs.core.windows.net/"
+  "url": "https://bostorage${random_string.random.result}.dfs.core.windows.net/"
 }
 JSON
 
@@ -147,7 +154,7 @@ resource "null_resource" "set_script_permission" {
 
 resource "null_resource" "upload_notebooks" {
   provisioner "local-exec" {
-    command = "./upload_notebooks.sh ${var.synapse_name} ${var.resource_group_name} ./synapse_notebooks"
+    command = "./upload_notebooks.sh bo-synapse${random_string.random.result} ${var.resource_group_name} ./synapse_notebooks"
   }
 }
 

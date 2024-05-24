@@ -17,23 +17,3 @@ variable "partner_id" {
   
 }
 
-variable "storage_account_name" {
-    description = "storage account name"
-    type = string
-  
-}
-
-variable "synapse_name" {
-    description = "synapse name"
-    type = string
-  
-}
-
-
-
-variable "spark_pool_name" {
-    type = string
-    description = "Name to be give to the spark pool"
-  
-}
-  
