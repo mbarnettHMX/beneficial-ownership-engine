@@ -52,8 +52,8 @@ spark_name | The name of the Spark pool to be created.
 Next, run the following commands
 
 ``` bash
-    terraform init
-    terraform apply --auto-approve
+    terraform -chdir=synapse_deploy init
+    terraform -chdir=synapse_deploy apply --auto-approve
 ```
 
 Once these commands complete you will see a success message indicating that your resources are deployed. This completes the Synapse deployment required for the Beneficial Ownership Engine.
