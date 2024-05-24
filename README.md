@@ -9,24 +9,25 @@ To prioritize the expert review of these entity networks, entities can be linked
 For each entity in the dataset, Transparency Engine generates a narrative report illustrating the detected relationships and review flags contributing to its overall review priority. In typical use, review of high-priority reports will help inform real-world actions targeted at either the entity or its broader network. 
 
 Beneficial Ownership Engine consists of three components:
-    1. Processing Pipeline: Python package that manages processing of the seven (7) required input files using graph modeling techniques to detect networks of closely-related entities.
-    2. API: A FastAPI interface for querying the entity report produced by the Beneficial Ownership Processing pipeline.
-    3. Report: A React-based application that enables viewing of the entity narrative report and exporting the report to a PDF file. The [Beneficial Ownership Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/powerbi/TransparencyEngine.pbit) provides access to these reorts.
+
+1. Processing Pipeline: Python package that manages processing of the seven (7) required input files using graph modeling techniques to detect networks of closely-related entities.
+2. API: A FastAPI interface for querying the entity report produced by the Beneficial Ownership Processing pipeline.
+3. Report: A React-based application that enables viewing of the entity narrative report and exporting the report to a PDF file. The [Beneficial Ownership Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/powerbi/TransparencyEngine.pbit) provides access to these reorts.
 
 
 ## Getting Started
 
 There are two deployment options for the Beneficial Ownership Engine:
 
-    1. Azure Synapse deployment, and
-    2. Local deployment.
+1. Azure Synapse deployment, and
+2. Local deployment.
 Processing requirements are important for the Beneficial Ownership Engine, especially for large datasets, thus the Azure Synapse deployment is  reccommended.
 
 For Azure Synapse deployment refer to the [Synapse Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/docs/deployment/SYNAPSE_DEPLOY.md) document.
 
 For local deployment on a laptop, desktop, or virtual machine, follow the instructions in [Local Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/docs/deployment/LOCAL_DEPLOY.md).
 
-## Web Application to Support Reporing Capabilities
+## Web Application to Support Reporting Capabilities
 
 ### API
 
