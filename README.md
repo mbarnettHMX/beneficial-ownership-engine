@@ -19,9 +19,9 @@ Beneficial Ownership Engine consists of three components:
 
 There are two deployment options for the Beneficial Ownership Engine:
 
-    (1) Azure Synapse deployment, and
-    (2) Local deployment.
-For Azure Synapse deployment refer to the Synapse Deployment Instruction document. For local deployment on a laptop, desktop, or virtual machine, follow the instructions in the sections below.
+    1. Azure Synapse deployment, and
+    2. Local deployment.
+For Azure Synapse deployment refer to the Synapse Deployment Instruction document. For local deployment on a laptop, desktop, or virtual machine, follow the instructions in the sections below. Note that processing speed is 
 
 ### Local Deployment Instructions
 
