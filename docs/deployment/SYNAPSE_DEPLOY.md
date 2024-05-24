@@ -44,7 +44,7 @@ Also install terraform using the instructions [here](https://developer.hashicorp
 
 ## Login to Azure in wsl environment 
 
-In your Ubuntu 22.04(WSL) terminal from the previous step, run the following commands 
+In your Ubuntu 22.04(WSL) terminal from the Connect to Ubuntu WSL with VSCode step, run the following commands 
 
 
 ``` bash
