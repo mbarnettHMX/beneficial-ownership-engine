@@ -11,7 +11,7 @@ We will need:
 
 >1. Launch VSCode.
 >2. Select **View > Terminal**. A new window should open along the bottom of the VSCode window.
->3. From this windows use the **Launch Profile** dropdown to open the **Ubuntu 22.04 (WSL)** terminal.
+>3. From this windows use the **Launch Profile** dropdown to open the **Ubuntu 22.04 (WSL)** terminal. ![image](images%2Fvscode_terminal_windows.png)
 >4. A bash prompt should open in the format `{username}@{machine_name}:/mnt/c/Users/{username}$`
 ---
 
