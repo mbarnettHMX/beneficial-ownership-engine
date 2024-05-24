@@ -17,21 +17,32 @@ Beneficial Ownership Engine consists of three components:
 
 ## Getting Started
 
-To run the pipeline locally, ensure that you have Docker installed and running on your machine. You can find instructions for installing Docker [here](https://docs.docker.com/engine/install/),
+There are two deployment options for the Beneficial Ownership Engine:
+
+    (1) Azure Synapse deployment, and
+    (2) Local deployment.
+For Azure Synapse deployment refer to the Synapse Deployment Instruction document. For local deployment on a laptop, desktop, or virtual machine, follow the instructions in the sections below.
+
+### Local Deployment Instructions
+
+To run the Beneficial Ownership Engine processing pipeline locally, ensure that you have Docker installed and running on your machine. You can find instructions for installing Docker [here](https://docs.docker.com/engine/install/),
 
 ### Pipeline
 
 To configure the pipeline, specify the pipeline configuration using two json files:
+
 - Pipeline config: Specify steps to be executed in the pipeline. An example pipeline config can be found in `transparency-engine-main\python\transparency-engine\samples\config\pipeline.json`
 - Steps config: Specify configurations for each step of the pipeline. An example steps config can be found in `transparency-engine-main\python\transparency-engine\samples\config\steps.json`
 
 To launch the pipeline's Docker container, execute the following command from the root of the project:
+
 ```bash
 docker build Dockerfile -t transparency-engine
 docker run -it transparency-engine
 ```
 
 To run the pipeline, once in Docker interactive mode, execute the following command from the `python/transparency-engine` folder:
+
 ```bash
 poetry run python transparency_engine/main.py --config pipeline.json --steps steps.json
 ```
@@ -39,6 +50,7 @@ poetry run python transparency_engine/main.py --config pipeline.json --steps ste
 The pipeline can also be launched in Visual Studio Code. To do so, open the project in Visual Studio Code and attach the project to a Docker container by following the instructions [here](https://code.visualstudio.com/docs/remote/containers).
 
 The pipeline can also be packaged as a wheel file to be installed on Azure Synapse or Databricks. To create the wheel file, execute the following command from the `python/transparency-engine` folder:
+
 ```bash
 poetry build
 ```
@@ -46,12 +58,14 @@ poetry build
 ### API
 
 To install the dependencies needed for the API, execute the following commands from the `python/api-backend` folder:
+
 ```bash
 pip install poetry
 poetry install
 ```
 
 To run the backend API execute from the root of the project:
+
 ```bash
 docker-compose up backend_api --build
 ```
@@ -59,11 +73,13 @@ docker-compose up backend_api --build
 ### Report
 
 To run the UI, you can either use `docker-compose` or install node and yarn and execute the following commands from the root of the project:
+
 ```bash
 yarn
 yarn build
 yarn start # run the webapp locally
 ```
+
 The webapp will be available at http://localhost:3000
 
 ## References
@@ -73,7 +89,6 @@ The webapp will be available at http://localhost:3000
 2. Nick Whiteley, Annie Gray, and Patrick Rubin-Delanchy. "Matrix factorisation and the interpretation of geodesic distance." Advances in Neural Information Processing Systems 34 (2021): 24-38.
 
 3. Ian Gallagher, Andrew Jones, and Patrick Rubin-Delanchy. "Spectral embedding for dynamic networks with stability guarantees." Advances in Neural Information Processing Systems 34 (2021): 10158-10170.
-
 
 ## Contributing
 
