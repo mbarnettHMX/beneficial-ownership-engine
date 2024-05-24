@@ -1,4 +1,4 @@
-# Local Development
+# Local Deployment Instructions
 
 This tutorial describes how to set up the development environment for the [inference](./inference) component using Docker.
 
