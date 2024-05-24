@@ -27,6 +27,8 @@ For Azure Synapse deployment refer to the [Synapse Deployment Instructions](http
 
 For local deployment on a laptop, desktop, or virtual machine, follow the instructions in [Local Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/docs/deployment/LOCAL_DEPLOY.md).
 
+## Web Application to Support Reporing Capabilities
+
 ### API
 
 To install the dependencies needed for the API, execute the following commands from the `python/api-backend` folder:
