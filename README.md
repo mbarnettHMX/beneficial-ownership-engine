@@ -21,7 +21,7 @@ There are two deployment options for the Beneficial Ownership Engine:
 
     1. Azure Synapse deployment, and
     2. Local deployment.
-For Azure Synapse deployment refer to the Synapse Deployment Instruction document. For local deployment on a laptop, desktop, or virtual machine, follow the instructions in the sections below. Note that processing speed is 
+For Azure Synapse deployment refer to the Synapse Deployment Instruction document. For local deployment on a laptop, desktop, or virtual machine, follow the instructions in the sections below. Note that processing requirements are important for the Beneficial Ownership Engine, especially for large datasets, thus the Azure Synapse deployment is  reccommended.
 
 ### Local Deployment Instructions
 
