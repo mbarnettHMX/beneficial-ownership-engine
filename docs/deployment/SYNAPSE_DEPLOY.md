@@ -42,7 +42,7 @@ Variable | Description
 --- |  ---
 resource_group_name |  The Name of the resource group in which the resoruces are deployed 
 location_for_resoruces | Your resources wil be deployed in the location specified here 
-storage_account_name | Please give name of the storage account.
+storage_account_name | Please give name of the storage account to be created.
 synapse_name | Please give name of the synapse to be created
 spark_name | Please provide the name of the spark pool to be created 
 
