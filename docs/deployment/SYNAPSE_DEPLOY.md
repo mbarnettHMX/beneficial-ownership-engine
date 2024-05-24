@@ -36,7 +36,7 @@ In your Ubuntu 22.04(WSL) terminal from the Connect to Ubuntu WSL with VSCode st
 
 ## Set terraform variables as needed in the file 
 
-There is a file named terraform.tfvars which has the following values. Change the values of the varibales in the file
+There is a file named terraform.tfvars in synapse_deploy folder which has the following values. Change the values of the varibales in the file
 
 Variable | Description
 --- |  ---
