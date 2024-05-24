@@ -1,0 +1,5 @@
+resource_group_name = "rgname"   
+location_for_resoruces = "location"  
+storage_account_name = "storagename"  
+synapse_name = "synapsename"
+spark_pool_name = "sparkname"
