@@ -10,9 +10,9 @@ For each entity in the dataset, Transparency Engine generates a narrative report
 
 Beneficial Ownership Engine consists of three components:
 
-- Pipeline: Python package that uses graph modeling techniques to detect networks of closely-related entities.
-- API: FastAPI interface that supports querying of the entity report using outputs produced by the entity relationship modeling pipeline.
-- Report: React-based application that enables viewing of the entity narrative report and exporting the report to a PDF file.
+    1. Processing Pipeline: Python package that manages processing of the seven (7) required input files using graph modeling techniques to detect networks of closely-related entities.
+    2. API: A FastAPI interface for querying the entity report produced by the Beneficial Ownership Processing pipeline.
+    3. Report: A React-based application that enables viewing of the entity narrative report and exporting the report to a PDF file. The [Beneficial Ownership Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/powerbi/TransparencyEngine.pbit) provides access to these reorts.
 
 
 ## Getting Started
@@ -21,39 +21,11 @@ There are two deployment options for the Beneficial Ownership Engine:
 
     1. Azure Synapse deployment, and
     2. Local deployment.
-For Azure Synapse deployment refer to the Synapse Deployment Instruction document. For local deployment on a laptop, desktop, or virtual machine, follow the instructions in the sections below. Note that processing requirements are important for the Beneficial Ownership Engine, especially for large datasets, thus the Azure Synapse deployment is  reccommended.
+Processing requirements are important for the Beneficial Ownership Engine, especially for large datasets, thus the Azure Synapse deployment is  reccommended.
 
-### Local Deployment Instructions
+For Azure Synapse deployment refer to the [Synapse Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/docs/deployment/SYNAPSE_DEPLOY.md) document.
 
-To run the Beneficial Ownership Engine processing pipeline locally, ensure that you have Docker installed and running on your machine. You can find instructions for installing Docker [here](https://docs.docker.com/engine/install/),
-
-### Pipeline
-
-To configure the pipeline, specify the pipeline configuration using two json files:
-
-- Pipeline config: Specify steps to be executed in the pipeline. An example pipeline config can be found in `transparency-engine-main\python\transparency-engine\samples\config\pipeline.json`
-- Steps config: Specify configurations for each step of the pipeline. An example steps config can be found in `transparency-engine-main\python\transparency-engine\samples\config\steps.json`
-
-To launch the pipeline's Docker container, execute the following command from the root of the project:
-
-```bash
-docker build Dockerfile -t transparency-engine
-docker run -it transparency-engine
-```
-
-To run the pipeline, once in Docker interactive mode, execute the following command from the `python/transparency-engine` folder:
-
-```bash
-poetry run python transparency_engine/main.py --config pipeline.json --steps steps.json
-```
-
-The pipeline can also be launched in Visual Studio Code. To do so, open the project in Visual Studio Code and attach the project to a Docker container by following the instructions [here](https://code.visualstudio.com/docs/remote/containers).
-
-The pipeline can also be packaged as a wheel file to be installed on Azure Synapse or Databricks. To create the wheel file, execute the following command from the `python/transparency-engine` folder:
-
-```bash
-poetry build
-```
+For local deployment on a laptop, desktop, or virtual machine, follow the instructions in [Local Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/docs/deployment/LOCAL_DEPLOY.md).
 
 ### API
 
