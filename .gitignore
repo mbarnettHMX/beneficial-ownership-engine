@@ -48,3 +48,5 @@ synapse_deploy/*_override.tf.json
 
 synapse_deploy/.terraformrc
 synapse_deploy/terraform.rc
+
+synapse_deploy/.terraform.lock.hcl
