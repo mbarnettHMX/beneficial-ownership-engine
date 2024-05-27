@@ -28,7 +28,7 @@ resource "azurerm_resource_group" "rg" {
 
 
 resource "azurerm_storage_account" "storage" {
-  name = "bostorage${random_string.random.result}"
+  name = "benfownerstorage${random_string.random.result}"
   location = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   account_tier = "Standard"
@@ -59,12 +59,12 @@ resource "azurerm_storage_container" "curated" {
 }
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "synapse_filesystem" {
-  name               = "bostorage${random_string.random.result}"
+  name               = "benfownerstorage${random_string.random.result}"
   storage_account_id = azurerm_storage_account.storage.id
 }
 
 resource "azurerm_synapse_workspace" "synapse" {
-  name                           = "bo-synapse${random_string.random.result}"
+  name                           = "benfowner-synapse${random_string.random.result}"
   location = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   storage_data_lake_gen2_filesystem_id = azurerm_storage_data_lake_gen2_filesystem.synapse_filesystem.id
@@ -99,7 +99,7 @@ resource "azurerm_synapse_firewall_rule" "allow_all" {
 
 
 resource "azurerm_synapse_spark_pool" "synapse_spark_pool" {
-  name                                = "bospark${random_string.random.result}"
+  name                                = "spark${random_string.random.result}"
   synapse_workspace_id                = azurerm_synapse_workspace.synapse.id
   node_size_family                    = "MemoryOptimized"
   node_size                           = "Medium"
@@ -133,29 +133,36 @@ resource "azurerm_role_assignment" "synapse_identity_blob_contributor" {
   principal_id         = azurerm_synapse_workspace.synapse.identity[0].principal_id
 }
 
+
+
 resource "azurerm_synapse_linked_service" "adls_storage" {
   name                 = "LS_Data"
   synapse_workspace_id = azurerm_synapse_workspace.synapse.id
   type                 = "AzureBlobFS"
-  type_properties_json = <<JSON
+  
+
+type_properties_json = <<JSON
 {
-  "url": "https://bostorage${random_string.random.result}.dfs.core.windows.net/"
+    "url": "https://benfownerstorage${random_string.random.result}.dfs.core.windows.net/"
 }
 JSON
+
 
  
 }
 
-resource "null_resource" "set_script_permission" {
+resource "null_resource" "upload_notebooks" {
+  depends_on = [azurerm_synapse_workspace.synapse]
   provisioner "local-exec" {
-    command = "chmod +x ./upload_notebooks.sh"
+    command = "sed -i 's/\r$//' upload_notebooks.sh && bash upload_notebooks.sh benfowner-synapse${random_string.random.result} ${var.resource_group_name} ./synapse_notebooks"
   }
 }
 
-resource "null_resource" "upload_notebooks" {
-  provisioner "local-exec" {
-    command = "./upload_notebooks.sh bo-synapse${random_string.random.result} ${var.resource_group_name} ./synapse_notebooks"
-  }
-}
+
+
+
+
+
+
 
 

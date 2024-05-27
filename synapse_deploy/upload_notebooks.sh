@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 WORKSPACE_NAME=$1
 RESOURCE_GROUP=$2
 FOLDER_PATH=$3
@@ -13,10 +12,10 @@ fi
 
 # Loop and upload the files
 echo "Uploading notebooks..."
-for notebook in $FOLDER_PATH/*.ipynb; do
-    NOTEBOOK_NAME=$(basename $notebook .ipynb)
+find "$FOLDER_PATH" -type f -name '*.ipynb' -print0 | while IFS= read -r -d '' notebook; do
+    NOTEBOOK_NAME=$(basename "$notebook" .ipynb)
     echo "Importing notebook: $NOTEBOOK_NAME"
-    az synapse notebook import --workspace-name $WORKSPACE_NAME --name $NOTEBOOK_NAME --file @${notebook}
+    az synapse notebook import --workspace-name "$WORKSPACE_NAME" --name "$NOTEBOOK_NAME" --file @"$notebook"
 done
 
 echo "Notebooks uploaded successfully."
