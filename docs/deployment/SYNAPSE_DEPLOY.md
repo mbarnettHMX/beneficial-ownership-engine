@@ -54,7 +54,7 @@ There is a file named terraform.tfvars in synapse_deploy folder which has the fo
 
 Variable | Description
 --- |  ---
-resource_group_name |  The Name of the resource group into which the resoruces are deployed.
+resource_group_name |  The Name of the resource group into which the resources are deployed.
 location_for_resoruces | Your resources wil be deployed in the location specified here.
 
 
