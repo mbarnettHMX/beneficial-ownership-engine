@@ -155,14 +155,29 @@ JSON
 }
 
 resource "null_resource" "upload_synapse_artifacts" {
-  depends_on = [azurerm_synapse_firewall_rule.allow_all]
+  depends_on = [
+    azurerm_role_assignment.synapse_identity_blob_contributor,
+    azurerm_synapse_linked_service.adls_storage,
+    azurerm_synapse_spark_pool.synapse_spark_pool,
+    azurerm_synapse_firewall_rule.allow_all,
+    azurerm_synapse_workspace.synapse,
+    azurerm_storage_container.curated,
+    azurerm_storage_data_lake_gen2_filesystem.synapse_filesystem,
+    azurerm_storage_account.storage,
+    azurerm_resource_group.rg,
+    data.azurerm_client_config.current,
+    random_string.random
+  ]
+
   triggers = {
-    always_run = "${timestamp()}"
+    always_run = timestamp()
   }
+
   provisioner "local-exec" {
     command = "sed -i 's/\r$//' upload_notebooks.sh && bash upload_notebooks.sh benfowner-synapse${random_string.random.result} ${var.resource_group_name} ./synapse_notebooks spark${random_string.random.result} "
   }
 }
+
 
 
 
