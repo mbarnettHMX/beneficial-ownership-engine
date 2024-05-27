@@ -8,8 +8,19 @@ We will need:
 
 - [Windows Store Ubuntu 22.04 LTS](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW)
 - [Visual Studio Code](https://visualstudio.microsoft.com/downloads/)
+- [Python 3.8](https://www.python.org/downloads/release/python-380/)
 
 ---
+
+
+## Generate wheel file 
+
+After installing python 3.8 run the following commands from the powershell terminal in you vscode 
+
+``` bash
+    cd .\python\transparency-engine\
+    poetry build
+```
 
 ## Connect to Ubuntu WSL with VSCode
 
@@ -45,9 +56,7 @@ Variable | Description
 --- |  ---
 resource_group_name |  The Name of the resource group into which the resoruces are deployed.
 location_for_resoruces | Your resources wil be deployed in the location specified here.
-storage_account_name | The name of the storage account to be created.
-synapse_name | The name of the Synapse to be created.
-spark_name | The name of the Spark pool to be created.
+
 
 Next, run the following commands
 
@@ -57,3 +66,5 @@ Next, run the following commands
 ```
 
 Once these commands complete you will see a success message indicating that your resources are deployed. This completes the Synapse deployment required for the Beneficial Ownership Engine.
+
+If you find some error while deploying you can run the terraform apply again any number of times till you see a success message.
