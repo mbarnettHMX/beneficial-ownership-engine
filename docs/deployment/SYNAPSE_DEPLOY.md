@@ -35,7 +35,7 @@ After installing python 3.8 run the following commands from the powershell termi
 
 In your Ubuntu 22.04(WSL) terminal from the previous step, follow the directions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux) to install Azure CLI.
 
-Netxt, install Terraform using the instructions [here](https://developer.hashicorp.com/terraform/install#linux)
+Next, install Terraform using the instructions [here](https://developer.hashicorp.com/terraform/install#linux)
 
 ---
 

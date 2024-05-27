@@ -154,10 +154,13 @@ JSON
  
 }
 
-resource "null_resource" "upload_notebooks" {
+resource "null_resource" "upload_synapse_artifacts" {
   depends_on = [azurerm_synapse_firewall_rule.allow_all]
+  triggers = {
+    always_run = "${timestamp()}"
+  }
   provisioner "local-exec" {
-    command = "sed -i 's/\r$//' upload_notebooks.sh && bash upload_notebooks.sh benfowner-synapse${random_string.random.result} ${var.resource_group_name} ./synapse_notebooks"
+    command = "sed -i 's/\r$//' upload_notebooks.sh && bash upload_notebooks.sh benfowner-synapse${random_string.random.result} ${var.resource_group_name} ./synapse_notebooks spark${random_string.random.result} "
   }
 }
 
