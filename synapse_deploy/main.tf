@@ -44,6 +44,7 @@ resource "azurerm_storage_account" "storage" {
 
 data "azurerm_client_config" "current" {}
 resource "azurerm_role_assignment" "storage_account_contributor" {
+  depends_on = [ azurerm_storage_account.storage ]
   scope                = azurerm_storage_account.storage.id
   role_definition_name = "Storage Account Contributor"
   principal_id         = data.azurerm_client_config.current.object_id
@@ -52,6 +53,7 @@ resource "azurerm_role_assignment" "storage_account_contributor" {
 
 
 resource "azurerm_storage_container" "curated" {
+  
   name                  = "curated"
   storage_account_name  = azurerm_storage_account.storage.name
   container_access_type = "private"
@@ -136,6 +138,7 @@ resource "azurerm_role_assignment" "synapse_identity_blob_contributor" {
 
 
 resource "azurerm_synapse_linked_service" "adls_storage" {
+  depends_on = [azurerm_role_assignment.synapse_identity_blob_contributor ]
   name                 = "LS_Data"
   synapse_workspace_id = azurerm_synapse_workspace.synapse.id
   type                 = "AzureBlobFS"
@@ -152,7 +155,7 @@ JSON
 }
 
 resource "null_resource" "upload_notebooks" {
-  depends_on = [azurerm_synapse_workspace.synapse]
+  depends_on = [azurerm_synapse_firewall_rule.allow_all]
   provisioner "local-exec" {
     command = "sed -i 's/\r$//' upload_notebooks.sh && bash upload_notebooks.sh benfowner-synapse${random_string.random.result} ${var.resource_group_name} ./synapse_notebooks"
   }

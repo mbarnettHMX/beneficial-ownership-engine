@@ -51,3 +51,6 @@ synapse_deploy/terraform.rc
 
 synapse_deploy/.terraform.lock.hcl
 synapse_deploy/terraform.tfvars
+*.tfvars
+*.sh
+

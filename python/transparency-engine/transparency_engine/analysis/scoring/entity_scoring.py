@@ -120,6 +120,7 @@ def compute_entity_score(
                 output_col=scaled_output_col,
             )
             measure_cols.append(scaled_output_col)
+    entity_measure_data = entity_measure_data.fillna(0)
 
     # collect all calculated measures to be used for scoring
     all_measures = F.create_map(
