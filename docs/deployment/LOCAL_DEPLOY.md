@@ -1,6 +1,6 @@
 # Local Deployment Instructions
 
-This tutorial describes how to set up the development environment for the [inference](./inference) component using Docker.
+This tutorial describes how to set up the development environment for the Beneficial Ownership Engine components using Docker.
 
 ## Pre-requisites
 
