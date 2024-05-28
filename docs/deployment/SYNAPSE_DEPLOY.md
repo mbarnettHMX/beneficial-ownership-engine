@@ -1,6 +1,6 @@
 # Synapse Deployment Instructions
 
-Follow the steps below to deploy Azure Synapse and supporing storage account and Spark cluster for the Beneficial Ownership Engine.
+Follow the steps below to deploy Azure Synapse and supporting storage account and Spark cluster for the Beneficial Ownership Engine.
 
 ## Prerequisites
 
