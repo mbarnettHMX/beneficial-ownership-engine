@@ -14,17 +14,17 @@ We will need:
 
 ## Generate wheel file
 
-After installing python 3.8, run the following commands from the PowerShell terminal in you vscode.
+After installing python 3.8, run the following commands from the PowerShell terminal in your VS Code.
 
 ``` bash
     cd .\python\transparency-engine\
     poetry build
 ```
 
-## Connect to Ubuntu WSL with VSCode
+## Connect to Ubuntu WSL with VS Code
 
->1. Launch VSCode.
->2. Select **View > Terminal**. A new terminal window should open along the bottom of the VSCode window.
+>1. Launch VS Code.
+>2. Select **View > Terminal**. A new terminal window should open along the bottom of the VS Code window.
 >3. In this terminal window use the **Launch Profile** dropdown to open the **Ubuntu 22.04 (WSL)** terminal. ![image](images%2Fvscode_terminal_windows.png)
 >4. A bash prompt should open in the format `{username}@{machine_name}:/mnt/c/Users/{username}$`
 >
@@ -40,7 +40,7 @@ Next, install Terraform using the instructions [here](https://developer.hashicor
 
 ## Login to Azure in the WSL environment
 
-In the Ubuntu 22.04(WSL) terminal opened in the 'Connect to Ubuntu WSL with VSCode' step, run the following commands:
+In the Ubuntu 22.04(WSL) terminal opened in the 'Connect to Ubuntu WSL with VS Code' step, run the following commands:
 
 ``` bash
     az login
@@ -49,14 +49,14 @@ In the Ubuntu 22.04(WSL) terminal opened in the 'Connect to Ubuntu WSL with VSCo
 
 ## Set Terraform variables as needed in the file
 
-There is a file named terraform.tfvars in synapse_deploy folder which has the following values. Change the values of the variables in the file
+In the file named terraform.tfvars in the synapse_deploy folder, change the values of the following variables:
 
 Variable | Description
 --- |  ---
 resource_group_name |  The Name of the resource group into which the resources are deployed.
 location_for_resoruces | The location where the resources will be deployed.
 
-Next, run the following commands
+Next, run the following commands:
 
 ``` bash
     terraform -chdir=synapse_deploy init
