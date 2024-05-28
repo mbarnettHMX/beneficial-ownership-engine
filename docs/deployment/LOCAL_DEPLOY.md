@@ -2,7 +2,7 @@
 
 NOTE: These instructions currently are under review and subject to change.
 
-This tutorial describes how to set up the development environment for the Beneficial Ownership Engine components using Docker.
+This tutorial describes how to set up the development environment for the Beneficial Ownership Engine components locally using Docker.
 
 ## Pre-requisites
 
