@@ -147,7 +147,7 @@ resource "azurerm_role_assignment" "synapse_identity_blob_contributor" {
 
 
 resource "azurerm_synapse_linked_service" "adls_storage" {
-  depends_on = [azurerm_role_assignment.synapse_identity_blob_contributor ]
+  depends_on = [azurerm_role_assignment.synapse_identity_blob_contributor, azurerm_synapse_firewall_rule.allow_all ]
   name                 = "LS_Data"
   synapse_workspace_id = azurerm_synapse_workspace.synapse.id
   type                 = "AzureBlobFS"
