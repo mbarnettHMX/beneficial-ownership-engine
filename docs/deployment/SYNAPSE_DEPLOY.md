@@ -12,10 +12,9 @@ We will need:
 
 ---
 
+## Generate wheel file
 
-## Generate wheel file 
-
-After installing python 3.8 run the following commands from the powershell terminal in you vscode 
+After installing python 3.8, run the following commands from the PowerShell terminal in you vscode.
 
 ``` bash
     cd .\python\transparency-engine\
@@ -25,8 +24,8 @@ After installing python 3.8 run the following commands from the powershell termi
 ## Connect to Ubuntu WSL with VSCode
 
 >1. Launch VSCode.
->2. Select **View > Terminal**. A new window should open along the bottom of the VSCode window.
->3. From this windows use the **Launch Profile** dropdown to open the **Ubuntu 22.04 (WSL)** terminal. ![image](images%2Fvscode_terminal_windows.png)
+>2. Select **View > Terminal**. A new terminal window should open along the bottom of the VSCode window.
+>3. In this terminal window use the **Launch Profile** dropdown to open the **Ubuntu 22.04 (WSL)** terminal. ![image](images%2Fvscode_terminal_windows.png)
 >4. A bash prompt should open in the format `{username}@{machine_name}:/mnt/c/Users/{username}$`
 >
 ---
@@ -50,13 +49,12 @@ In the Ubuntu 22.04(WSL) terminal opened in the 'Connect to Ubuntu WSL with VSCo
 
 ## Set Terraform variables as needed in the file
 
-There is a file named terraform.tfvars in synapse_deploy folder which has the following values. Change the values of the varibales in the file
+There is a file named terraform.tfvars in synapse_deploy folder which has the following values. Change the values of the variables in the file
 
 Variable | Description
 --- |  ---
 resource_group_name |  The Name of the resource group into which the resources are deployed.
-location_for_resoruces | Your resources wil be deployed in the location specified here.
-
+location_for_resoruces | The location where the resources will be deployed.
 
 Next, run the following commands
 
@@ -65,6 +63,6 @@ Next, run the following commands
     terraform -chdir=synapse_deploy apply --auto-approve
 ```
 
-Once these commands complete you will see a success message indicating that your resources are deployed. This completes the Synapse deployment required for the Beneficial Ownership Engine.
+Once these commands complete you will see a success message indicating that the resources are deployed. This completes the Synapse deployment required for the Beneficial Ownership Engine.
 
-If you find some error while deploying you can run the terraform apply again any number of times till you see a success message.
+If you encounter errors while deploying, the Terraform commands above can be re-applied, and this may resolve the errors encountered.
