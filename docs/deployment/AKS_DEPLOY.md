@@ -1,10 +1,12 @@
 # Deploying to AKS
 
-This tutorial describes how to create and configure a kubernetes cluster on Azure (AKS) in order to run the [`causal-services` helm chart](../config/helm/causal-services/).
+NOTE: These instructions currently are under review and subject to change. 
+
+This tutorial describes how to create and configure a Kubernetes cluster on Azure (AKS) and run a Kubernetes Helm chart to deploy the Beneficial Ownership Engine API required for HTML report generation.
 
 ## 0. Pre-requirements
 
-We will need:
+The following are required to complete the deployment:
 
 - [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/),
 - [Helm](https://helm.sh/)
@@ -15,7 +17,7 @@ We will need:
 
 ### 1.1. Azure CLI login
 
-Let's login into Azure and set our subscription:
+First, log into Azure and set the subscription:
 
 ```bash
 > az login
@@ -24,7 +26,7 @@ Let's login into Azure and set our subscription:
 
 ### 1.2. Create resource group
 
-We can then create our resource group that will store our cluster.
+Next, create the resource group that will store the AKS cluster.
 
 ```bash
 > az group create --name {RESOURCE_GROUP_NAME} --location {LOCATION}
@@ -42,39 +44,39 @@ We can then create our resource group that will store our cluster.
 
 ### 2.2. AKS Cluster's resource group name
 
-Azure will also create another resource group to put the resources related to the AKS cluster, we can check its name using the following command:
+Azure will also create another resource group into which the resources related to the AKS cluster will be placed. We can check its name using the following command:
 
 ```bash
 > az aks show --resource-group {RESOURCE_GROUP_NAME} --name {AKS_CLUSTER_NAME} --query nodeResourceGroup -o tsv
 ```
 
-The above command will output something like `MC_{RESOURCE_GROUP_NAME}_{AKS_CLUSTER_NAME}_{LOCATION}`, to which we will refer as `{AKS_RESOURCE_GROUP_NAME}`.
+The above command will output `MC_{RESOURCE_GROUP_NAME}_{AKS_CLUSTER_NAME}_{LOCATION}`, from which we can obtain `{AKS_RESOURCE_GROUP_NAME}`.
 
 ## 3. Ingress controller
 
-In the setup we will use an ingress controller to allow access to the services running in the cluster and load balance the requests.
+The deployment will use an ingress controller to manage access to the services running in the cluster and to load balance incoming requests.
 
 ### 3.1. Creating static IP
 
-Let's then create the static IP that will be the entry point for accessing our cluster through the ingress controller:
+Create a static IP that will be the entry point for accessing the cluster through the ingress controller:
 
 ```bash
 > az network public-ip create --resource-group {AKS_RESOURCE_GROUP_NAME} --name {INGRESS_IP_NAME} --dns-name {DNS_NAME} --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
 ```
 
-The above command will output the static IP allocated, to which we will refer as `{INGRESS_STATIC_IP}`.
+The above command will output the static IP allocated `{INGRESS_STATIC_IP}`.
 
-The fully qualified domain name will be something like: `{DNS_NAME}.{LOCATION}.cloudapp.azure.com`, to which we will refer as `{DOMAIN}`.
+The fully qualified domain name will be `{DNS_NAME}.{LOCATION}.cloudapp.azure.com`, from which we can obtain the `{DOMAIN}`.
 
 ### 3.2. Getting access to the cluster
 
-We will access the cluster from the machine you are running Azure CLI, to do so let's first get the credentials to the cluster configured in `kubectl`:
+The cluster is accessed from the machine running Azure CLI. To do this, first get the credentials to the cluster configured in `kubectl`:
 
 ```bash
 > az aks get-credentials --resource-group {RESOURCE_GROUP_NAME} --name {AKS_CLUSTER_NAME}
 ```
 
-Then we can verify if `kubectl` is using the correct context related to the cluster we just created:
+Then verify if `kubectl` is using the correct context related to the cluster just created:
 
 ```bash
 > kubectl config get-contexts
@@ -82,7 +84,7 @@ Then we can verify if `kubectl` is using the correct context related to the clus
 
 ### 3.3. Install ingress controller
 
-Now that we have access to the cluster through `kubectl`, let's install the NGINX ingress controller using Helm. To do so, we need to create the YAML file (`nginx-ingress.yaml`) with the configuration for our ingress controller:
+Now that access to the cluster has been provided through `kubectl`, install the NGINX ingress controller using Helm. To do so, create the YAML file (`nginx-ingress.yaml`) with the configuration for the ingress controller:
 
 ```yml
 controller:
@@ -93,9 +95,9 @@ controller:
 
 > Replace {INGRESS_STATIC_IP} with the IP you got in the previous steps.
 
-Notice `externalTrafficPolicy: Local`, this is important so that the real IPs for the incoming requests are logged in the ingress controller, instead of the IPs in the local cluster.
+Notice `externalTrafficPolicy: Local`, which is important so that the real IPs for the incoming requests are logged in the ingress controller, instead of the IPs in the local cluster.
 
-Now we are ready to deploy our NGINX ingress controller to the cluster:
+Now the NGINX ingress controller can be deployed to the cluster:
 
 ```bash
 > helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -103,13 +105,13 @@ Now we are ready to deploy our NGINX ingress controller to the cluster:
 > helm install ingress-nginx ingress-nginx/ingress-nginx --create-namespace --namespace ingress-nginx -f helm/aks/nginx-ingress.yaml
 ```
 
-We can check if everything worked successfully by running:
+Successful deployment can be confirmed by running:
 
 ```bash
 > kubectl get all,ingress -n ingress-nginx
 ```
 
-You should see the deployed ingress controller configured with your external IP in there.
+You should see the deployed ingress controller configured with the specified external IP.
 
 > Another way around it is to provide the access tokens to the ACR directly through kubernetes secrets.
 
