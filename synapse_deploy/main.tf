@@ -47,7 +47,7 @@ data "azurerm_client_config" "current" {}
 resource "azurerm_role_assignment" "storage_account_contributor" {
   depends_on = [ azurerm_storage_account.storage ]
   scope                = azurerm_storage_account.storage.id
-  role_definition_name = "Storage Account Contributor"
+  role_definition_name = "Storage Blob Data Contributor"
   principal_id         = data.azurerm_client_config.current.object_id
 }
 
