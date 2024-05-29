@@ -14,7 +14,6 @@ Beneficial Ownership Engine consists of three components:
 2. API: A FastAPI interface for querying the entity report produced by the Beneficial Ownership Processing pipeline.
 3. Report: A React-based application that enables viewing of the entity narrative report and exporting the report to a PDF file. The [Beneficial Ownership Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/tree/main/powerbi) provides access to these reorts.
 
-
 ## Getting Started
 
 There are two deployment options for the Beneficial Ownership Engine:
