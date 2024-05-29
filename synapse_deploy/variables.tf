@@ -11,7 +11,7 @@ variable "location_for_resoruces" {
 }
 
 variable "partner_id" {
-    description = "partner id for tracking"
+    description = "ID for Azure usage attribution"
     type = string
     default = "e3793613-5f71-4f07-87d0-ecee0c0f5522"
   

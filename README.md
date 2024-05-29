@@ -1,12 +1,12 @@
 # Beneficial Ownership Engine
 
-Beneficial Ownership Engine aims to detect and communicate the implicit structure of complex activities in real-world problem areas, in ways that support both situational awareness and targeted action. A potential application is to identify and counter adversarial activities (e.g., corruption) hidden within large-scale datasets.
+Beneficial Ownership Engine aims to detect and communicate the implicit connections between entities and activities in ways that support both situational awareness and targeted action. Applications include identifying risks due to adversarial activities (e.g., corruption and collusion) hidden within large datasets of corporate and government entity metadata and activity records.
 
-Given a collection of streaming data sources describing the attributes and actions of real-world entities, it uses a range of graph modeling, joint graph embedding [[1-3]](#references), and other statistical techniques to detect and explain the networks of entities most closely related to each entity. 
+Given a collection of streaming data sources describing the attributes and actions of real-world entities, the Beneficial Ownership Engine uses a range of graph modeling, joint graph embedding [[1-3]](#references), and other statistical techniques to detect and explain the networks of entities most closely related to each entity. 
 
-To prioritize the expert review of these entity networks, entities can be linked to "review flags" that indicate the need for inspection. Review flags may be signs of either opportunities ("green flags") or risks ("red flags") thought to transfer between closely-related entities. The more review flags in an entity network, the higher the priority of that network for review.
+To prioritize the expert review of these entity networks, entities can be linked to "risk signals" that indicate the need for inspection. Risk signals may be signs of either opportunities ("green flags") or risks ("red flags") due to the relationships between entities. The more risk signals in an entity network, the higher the priority of that network for review.
 
-For each entity in the dataset, Transparency Engine generates a narrative report illustrating the detected relationships and review flags contributing to its overall review priority. In typical use, review of high-priority reports will help inform real-world actions targeted at either the entity or its broader network. 
+For each entity in the dataset, the Beneficial Ownership Engine generates a report illustrating the detected relationships and risk signals contributing to its overall review priority. In typical use, review of high-priority reports will help inform real-world actions targeted at either the entity or its broader network. 
 
 Beneficial Ownership Engine consists of three components:
 
