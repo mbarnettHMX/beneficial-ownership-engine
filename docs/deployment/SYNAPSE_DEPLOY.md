@@ -48,9 +48,9 @@ If Poetry has been successfully installed, you should see its version number pri
 
 ## Generate wheel file
 
-After installing python 3.8, run the following commands from the PowerShell terminal in your VS Code.
+After installing python 3.8, pip, and Poetry, run the following commands from the PowerShell terminal in your VS Code.
 
-``` bash
+``` PowerShell
     cd .\python\transparency-engine\
     poetry build
 ```
