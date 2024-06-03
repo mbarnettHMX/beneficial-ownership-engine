@@ -55,7 +55,7 @@ After installing python 3.8, pip, and Poetry, run the following commands from th
     cd .\python\transparency-engine\
     poetry build
 ```
-You should see the following out to the terminal:
+You should see the following in output in PowerShell:
 
 ``` powershell
     Building transparency-engine (0.1.0)
