@@ -1,4 +1,4 @@
-# Synapse Deployment Instructions
+build# Synapse Deployment Instructions
 
 Follow the steps below to deploy Azure Synapse and supporting storage account and Spark cluster for the Beneficial Ownership Engine.
 
@@ -11,6 +11,41 @@ We will need:
 - [Python 3.8](https://www.python.org/downloads/release/python-380/)
 
 ---
+## Install pip and poetry
+
+The pip package manager is requred to install the Poetry tool. To install pip in PowerShell, follow these steps:
+
+1. Download the get-pip.py script from the [official pip website](https://bootstrap.pypa.io/get-pip.py).
+2. Open PowerShell with Administrative access.
+3. Navigate to the location of the downloaded get-pip.py file using the 'cd' command.
+4. Install pip by running the following command:
+
+``` PowerShell
+py get-pip.py
+```
+
+If you want to upgrade your existing pip installation, you can do so by running the following command:
+
+``` PowerShell
+python -m pip install --upgrade pip
+```
+
+The Poetry package, a tool for dependency management and packaging in Python, is required to build the wheel file. These installation instructions have been tested with PowerShell. For alternative installations, please see instructions at [the Poetry website](https://python-poetry.org/docs/). 
+
+1. Open PowerShell with Administrative access.
+2. In the PowerShell window, paste the following command and press Enter:
+  ``` PowerShell
+    (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+    poetry build
+    ``` 
+3. Once the installation is complete, it will provide you with a path. Copy this path as you’ll need to add it to your user environment variables.
+4. Right-click on the Start button and select “System”. In the System window, click on “Advanced system settings” on the left sidebar. In the System Properties window, click on the “Environment Variables…” button. In the Environment Variables window, under “User variables for [YourUsername]”, find the “PATH” variable and select it. Click on the “Edit…” button. In the Edit Environment Variable window, click on “New” and paste the path you copied from the installation process. Click “OK” on all open windows to save your changes.
+5. Close the PowerShell window and open a new PowerShell. This is necessary for PowerShell to recognize the change in PATH.
+6. In the new PowerShell window, type:
+    ``` PowerShell
+    (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+    poetry build
+    ``` 
 
 ## Generate wheel file
 
