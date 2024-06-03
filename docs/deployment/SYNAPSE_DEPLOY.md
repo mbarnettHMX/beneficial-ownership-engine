@@ -20,13 +20,13 @@ The pip package manager is requred to install the Poetry tool. To install pip in
 3. Navigate to the location of the downloaded get-pip.py file using the 'cd' command.
 4. Install pip by running the following command:
 
-``` PowerShell
+``` powershell
 py get-pip.py
 ```
 
 If you want to upgrade your existing pip installation, you can do so by running the following command:
 
-``` PowerShell
+``` powershell
 python -m pip install --upgrade pip
 ```
 
@@ -41,7 +41,8 @@ The Poetry package, a tool for dependency management and packaging in Python, is
 4. Right-click on the Start button and select “System”. In the System window, click on “Advanced system settings” on the left sidebar. In the System Properties window, click on the “Environment Variables…” button. In the Environment Variables window, under “User variables for [YourUsername]”, find the “PATH” variable and select it. Click on the “Edit…” button. In the Edit Environment Variable window, click on “New” and paste the path you copied from the installation process. Click “OK” on all open windows to save your changes.
 5. Close the PowerShell window and open a new PowerShell. This is necessary for PowerShell to recognize the change in PATH.
 6. In the new PowerShell window, type the following an press Enter:
-``` PowerShell
+
+``` powershell
 poetry --version
 ``` 
 If Poetry has been successfully installed, you should see its version number printed in the termina.
@@ -50,9 +51,18 @@ If Poetry has been successfully installed, you should see its version number pri
 
 After installing python 3.8, pip, and Poetry, run the following commands from the PowerShell terminal in your VS Code.
 
-``` PowerShell
+``` powershell
     cd .\python\transparency-engine\
     poetry build
+```
+You should see the following out to the terminal:
+
+``` powershell
+    Building transparency-engine (0.1.0)
+      - Building sdist
+      - Built transparency_engine-0.1.0.tar.gz
+      - Building wheel
+      - Built transparency_engine-0.1.0-py3-none-any.whl
 ```
 
 ## Connect to Ubuntu WSL with VS Code
