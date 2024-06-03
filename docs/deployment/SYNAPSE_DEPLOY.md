@@ -34,18 +34,17 @@ The Poetry package, a tool for dependency management and packaging in Python, is
 
 1. Open PowerShell with Administrative access.
 2. In the PowerShell window, paste the following command and press Enter:
-  ``` PowerShell
-    (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
-    poetry build
-    ``` 
+``` PowerShell
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+``` 
 3. Once the installation is complete, it will provide you with a path. Copy this path as you’ll need to add it to your user environment variables.
 4. Right-click on the Start button and select “System”. In the System window, click on “Advanced system settings” on the left sidebar. In the System Properties window, click on the “Environment Variables…” button. In the Environment Variables window, under “User variables for [YourUsername]”, find the “PATH” variable and select it. Click on the “Edit…” button. In the Edit Environment Variable window, click on “New” and paste the path you copied from the installation process. Click “OK” on all open windows to save your changes.
 5. Close the PowerShell window and open a new PowerShell. This is necessary for PowerShell to recognize the change in PATH.
-6. In the new PowerShell window, type:
-    ``` PowerShell
-    (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
-    poetry build
-    ``` 
+6. In the new PowerShell window, type the following an press Enter:
+``` PowerShell
+poetry --version
+``` 
+If Poetry has been successfully installed, you should see its version number printed in the termina.
 
 ## Generate wheel file
 
