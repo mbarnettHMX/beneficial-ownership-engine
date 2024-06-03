@@ -15,7 +15,7 @@ We will need:
 
 The pip package manager is requred to install the Poetry tool. To install pip in PowerShell, follow these steps:
 
-1. Download the get-pip.py script from the [official pip website](https://bootstrap.pypa.io/get-pip.py).
+1. Download the get-pip.py script from the [this website](https://bootstrap.pypa.io/get-pip.py).
 2. Open PowerShell with Administrative access.
 3. Navigate to the location of the downloaded get-pip.py file using the 'cd' command.
 4. Install pip by running the following command:
