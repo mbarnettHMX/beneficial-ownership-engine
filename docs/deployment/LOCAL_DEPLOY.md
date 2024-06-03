@@ -37,8 +37,3 @@ poetry run python transparency_engine/main.py --config pipeline.json --steps ste
 ```
 
 The pipeline can also be launched in Visual Studio Code. To do so, open the project in Visual Studio Code and attach the project to a Docker container by following the instructions [here](https://code.visualstudio.com/docs/remote/containers).
-
-The pipeline can also be packaged as a wheel file to be installed on Azure Synapse or Databricks. To create the wheel file, execute the following command from the `python/transparency-engine` folder:
-
-```bash
-poetry build
