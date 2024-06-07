@@ -38,7 +38,7 @@
             {
                 "name": "entity",
                 "type": "entity",
-                "path": "./samples/input_data/entity.csv",
+                "path": "./samples/input_data/entityweight.csv",
                 "steps": [
                     "load"
                 ]
