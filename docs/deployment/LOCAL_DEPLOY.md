@@ -25,8 +25,10 @@ To configure the pipeline, specify the pipeline configuration using two json fil
 
 To build and run the Docker container, execute the following command in sequence from the the python\transparency-engine folder and note the `.` at the end of the `docker build` command tells Docker to use the current directory as the build context:
 
-```bash
+```Power Shell
 docker build -t transparency-engine -f Dockerfile .
+
+```Power Shell
 docker run -it transparency-engine
 ```
 
