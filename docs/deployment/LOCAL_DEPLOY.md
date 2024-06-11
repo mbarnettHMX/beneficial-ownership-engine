@@ -23,10 +23,10 @@ To configure the pipeline, specify the pipeline configuration using two json fil
 - Pipeline config: Specify steps to be executed in the pipeline. An example pipeline config can be found in `transparency-engine-main\python\transparency-engine\samples\config\pipeline.json`
 - Steps config: Specify configurations for each step of the pipeline. An example steps config can be found in `transparency-engine-main\python\transparency-engine\samples\config\steps.json`
 
-To launch the pipeline's Docker container, execute the following command from the root of the project:
+To build and run the Docker container, execute the following command in sequence from the the python\transparency-engine folder and note the (".")' at the end of the ("docker build")' command tells Docker to use the current directory as the build context:
 
 ```bash
-docker build Dockerfile -t transparency-engine
+docker build -t transparency-engine -f Dockerfile .
 docker run -it transparency-engine
 ```
 
