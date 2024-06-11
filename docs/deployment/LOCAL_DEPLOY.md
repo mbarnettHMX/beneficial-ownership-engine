@@ -27,6 +27,7 @@ To build and run the Docker container, execute the following command in sequence
 
 ```Power Shell
 docker build -t transparency-engine -f Dockerfile .
+```
 
 ```Power Shell
 docker run -it transparency-engine
