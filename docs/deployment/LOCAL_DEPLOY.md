@@ -35,10 +35,10 @@ docker run -it transparency-engine
 
 The `docker run` command will start the container in Docker interactive mode.
 
-To run the pipeline, once in Docker interactive mode, execute the following command from the `python/transparency-engine` folder:
+To run the pipeline, once in Docker interactive mode, execute the following command from the `/workdir` folder :
 
 ```bash
-poetry run python transparency_engine/main.py --config pipeline.json --steps steps.json
+poetry run python transparency_engine/main.py --config samples/config/pipeline.json --steps samples/config/steps.json
 ```
 
 The pipeline can also be launched in Visual Studio Code. To do so, open the project in Visual Studio Code and attach the project to a Docker container by following the instructions [here](https://code.visualstudio.com/docs/remote/containers).
