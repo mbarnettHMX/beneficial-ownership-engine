@@ -19,11 +19,13 @@ To run the Beneficial Ownership Engine processing pipeline locally, ensure that 
 
 ### Cloning the Repository and Starting Visual Studio Code
 
-Once the prerequsite software is installed clone using GIT and a command prompt. Choose a new, local folder for the repository, navigate to the new folder, and clone the repository (you can obtain the repository URL from the 'Code' (green button) on the GitHub Beneficial Ownership landing page):
+Once the prerequsite software is installed clone using GIT and a command prompt. Choose a new, local folder for the repository, navigate to the new folder, and clone the repository. You can obtain the required repository URL from the 'Code' (green button) on the GitHub Beneficial Ownership landing page:
 
 ```Power Shell
-git 
+git clone <repository URL>
 ```
+
+Where <repository URL> must be replaced with the URL that you copied above.
 
 ### Pipeline
 
