@@ -44,7 +44,7 @@ Run the Docker container just created, using the -v option to
 docker run -v <path>:/workdir -it beneficial-ownership-engine
 ```
 
-Where `<path>` must be replaced with the path to the `python/transparency-engine` folder. To ensure the path syntax is correct, an example path is `/c/Users/myUserID/source/repos/BeneficialOwnershipEngine/beneficial-ownership-engine/python/transparency-engine`.
+Where `<path>` must be replaced with the path to the `python/transparency-engine` folder. For clarity and to ensure the path syntax is correct, an example path is `/c/Users/myUserID/source/repos/BeneficialOwnershipEngine/beneficial-ownership-engine/python/transparency-engine`.
 
 The `docker run` command will start the container in Docker interactive mode, indicated by the `root` prompt, for example `root@3a8d6318a1e6:/workdir#`.
 
