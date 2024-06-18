@@ -38,13 +38,17 @@ To build and run the Docker container with Power Shell, execute the following co
 docker build -t transparency-engine -f Dockerfile .
 ```
 
+Run the Docker container just created, using the -v option to  
+
 ```Power Shell
-docker run -it transparency-engine
+docker run -v <path>:/workdir -it beneficial-ownership-engine
 ```
 
-The `docker run` command will start the container in Docker interactive mode.
+Where `<path>` must be replaced with the path to the `python/transparency-engine' folder. To ensure the path syntax is correct, an example path is `/c/Users/myUserID/source/repos/BeneficialOwnershipEngine/beneficial-ownership-engine/python/transparency-engine`.
 
-To run the pipeline, once in Docker interactive mode, execute the following command from the `/workdir` folder :
+The `docker run` command will start the container in Docker interactive mode, indicated by the `root` prompt, for example `root@3a8d6318a1e6:/workdir#`.
+
+To run the pipeline, once in Docker interactive mode, execute the following command from the `/workdir` folder:
 
 ```bash
 poetry run python transparency_engine/main.py --config samples/config/pipeline.json --steps samples/config/steps.json
