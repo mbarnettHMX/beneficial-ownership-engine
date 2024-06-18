@@ -9,12 +9,21 @@ This tutorial describes how to set up the development environment for the Benefi
 1. [Docker](https://docs.docker.com/engine/install/)
 2. [Visual Studio Code](https://code.visualstudio.com/)
 3. [Visual Studio Code Remote Development Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
+4. [GIT] (https://git-scm.com/downloads)
 
 You can follow the instructions [here](https://code.visualstudio.com/docs/devcontainers/containers) for developing inside a Docker container.
 
 ## Running the Beneficial Ownership Engine in a Local Deployment
 
-To run the Beneficial Ownership Engine processing pipeline locally, ensure that you have Docker installed and running on your machine. You can find instructions for installing Docker [here](https://docs.docker.com/engine/install/),
+To run the Beneficial Ownership Engine processing pipeline locally, ensure that you have Docker installed and running on your machine. You can find instructions for installing Docker [here](https://docs.docker.com/engine/install/).
+
+### Cloning the Repository and Starting Visual Studio Code
+
+Once the prerequsite software is installed clone using GIT and a command prompt. Choose a new, local folder for the repository, navigate to the new folder, and clone the repository (you can obtain the repository URL from the 'Code' (green button) on the GitHub Beneficial Ownership landing page):
+
+```Power Shell
+git 
+```
 
 ### Pipeline
 
