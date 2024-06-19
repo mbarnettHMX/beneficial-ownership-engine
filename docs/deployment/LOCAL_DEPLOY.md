@@ -32,7 +32,7 @@ Next, you can start Visual Studio Code from Power Shell with the following comma
 cd beneficial-ownership-engine\python\transparency-engine
 code .
 ```
-THe `code` command will start Visual Studio Code. Click on the Explorer icon on the navigation pane at left, select the 'transparency_engine' folder then select 'Terminal->New Terminal' to open a Power Shell.
+THe `code` command will start Visual Studio Code. When Visual Studio Code opens, click on the Explorer icon on the navigation pane at left, select the 'transparency_engine' folder then select 'Terminal->New Terminal' to open a Power Shell in that folder.
 
 ### Configuring an dTriggering the Pipeline
 
