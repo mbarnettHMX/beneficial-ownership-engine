@@ -24,8 +24,7 @@ Once the prerequsite software is installed clone using GIT and a command prompt.
 ```Power Shell
 git clone <repository URL>
 ```
-
-Where <repository URL> must be replaced with the URL that you copied above.
+Where `<repository URL>` must be replaced with the URL that you copied above.
 
 ### Pipeline
 
