@@ -34,7 +34,7 @@ code .
 ```
 THe `code` command will start Visual Studio Code. When Visual Studio Code opens, click on the Explorer icon on the navigation pane at left, select the 'transparency_engine' folder then select 'Terminal->New Terminal' to open a Power Shell in that folder.
 
-### Configuring an dTriggering the Pipeline
+### Configuring and Triggering the Pipeline
 
 To configure the pipeline, edit the following two json files, located in the TRANSPARENCY-ENGINE 'samples\config' folder. These can be edited in Visual Studio Code:
 
