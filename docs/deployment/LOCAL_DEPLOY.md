@@ -26,14 +26,22 @@ git clone <repository URL>
 ```
 Where `<repository URL>` must be replaced with the URL that you copied above.
 
-### Pipeline
+Next, you can start Visual Studio Code from Power Shell with the following commands and note that you must first navigate to the /python/transparency-engine folder before invoking Visual Studio Code with the `code` command. The following commands assume you are starting from the local folder loaction into which you cloned the repository, for example `C:\Users\myUserID\source\repos\BeneficialOwnership'.
 
-To configure the pipeline, specify the pipeline configuration using two json files:
+```Power Shell
+cd beneficial-ownership-engine\python\transparency-engine
+code .
+```
+THe `code` command will start Visual Studio Code. Click on the Explorer icon on the navigation pane at left, select the 'transparency_engine' folder then select 'Terminal->New Terminal' to open a Power Shell.
 
-- Pipeline config: Specify steps to be executed in the pipeline. An example pipeline config can be found in `transparency-engine-main\python\transparency-engine\samples\config\pipeline.json`
-- Steps config: Specify configurations for each step of the pipeline. An example steps config can be found in `transparency-engine-main\python\transparency-engine\samples\config\steps.json`
+### Configuring an dTriggering the Pipeline
 
-To build and run the Docker container with Power Shell, execute the following commands in sequence from the the python\transparency-engine folder and note the `.` at the end of the `docker build` command tells Docker to use the current directory as the build context:
+To configure the pipeline, edit the following two json files, located in the TRANSPARENCY-ENGINE 'samples\config' folder. These can be edited in Visual Studio Code:
+
+- pipeline.json: Specify steps to be executed in the pipeline; however, initially this file should not be changed. The file is provided to allow runniing of some subset of the steps to selectively complete certain steps, or rerun steps.
+- steps.json: Specify configurations for each step of the pipeline. This file does not require changes if you want to accept the default configuration settings, and you are using as input the synthetic data provided in the folder samples\inut_data. If you want to modify the default settings or have changed the names or locations of the input data files, then this file must be modified accordingly.
+
+To build and run the Docker container from Power Shell, execute the following commands in sequence from the the python\transparency-engine folder and note the `.` at the end of the `docker build` command tells Docker to use the current directory as the build context:
 
 ```Power Shell
 docker build -t transparency-engine -f Dockerfile .
