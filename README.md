@@ -20,7 +20,8 @@ There are two deployment options for the Beneficial Ownership Engine:
 
 1. Azure Synapse deployment, and
 2. Local deployment.
-Processing requirements are important for the Beneficial Ownership Engine, especially for large datasets, thus the Azure Synapse deployment is reccommended.
+
+Efficient processing is important for the Beneficial Ownership Engine, especially for large datasets, thus the Azure Synapse deployment is reccommended.
 
 For Azure Synapse deployment refer to the [Synapse Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/SYNAPSE_DEPLOY.md) document.
 
