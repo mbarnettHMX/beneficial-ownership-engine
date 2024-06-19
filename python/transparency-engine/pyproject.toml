@@ -24,16 +24,16 @@ graspologic = "^2.0.1"
 kneed = "^0.8.2"
 pyspark = "3.2.2"
 numpy = "^1.22.0"
-redis = {extras = ["hiredis"], version = "^4.4.2"}
+redis = {extras = ["hiredis"], version = "^4.4.4"}
 dependency-injector = "^4.41.0"
-pydantic = "^1.10.4"
+pydantic = "^1.10.13"
 networkx = "^3.0"
 
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "^0.18.0"
 bandit = "^1.7.4"
-black = "^22.12.0"
+black = "^24.3.0"
 codespell = "^2.2.2"
 flake8 = "^4.0.1"
 ipykernel = "^6.7.0"
