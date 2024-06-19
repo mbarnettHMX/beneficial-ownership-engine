@@ -62,5 +62,3 @@ To run the pipeline, once in Docker interactive mode, execute the following comm
 ```bash
 poetry run python transparency_engine/main.py --config samples/config/pipeline.json --steps samples/config/steps.json
 ```
-
-The pipeline can also be launched in Visual Studio Code. To do so, open the project in Visual Studio Code and attach the project to a Docker container by following the instructions [here](https://code.visualstudio.com/docs/remote/containers).
