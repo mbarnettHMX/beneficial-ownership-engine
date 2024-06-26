@@ -55,7 +55,7 @@ from transparency_engine.preprocessing.text.lsh_fuzzy_matching import (
     LSHFuzzyMatchTransformer,
 )
 from transparency_engine.modules.graph.preprocessing.data_formatting import format_attribute_data
-from transparency_engine.typing import InputLoadTypes, PipelineSteps
+from transparency_engine.tetyping import InputLoadTypes, PipelineSteps
 
 
 logger = logging.getLogger(__name__)

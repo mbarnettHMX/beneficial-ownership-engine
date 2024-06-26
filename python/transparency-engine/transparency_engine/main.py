@@ -21,7 +21,7 @@ from typing import Any, Dict
 from transparency_engine.containers import ContainerKeys, build_container
 from transparency_engine.io.data_handler import DataHandler, DataHandlerModes
 from transparency_engine.pipeline import TransparencyPipeline
-from transparency_engine.typing import PipelineSteps
+from transparency_engine.tetyping import PipelineSteps
 
 
 # Set to info for now. Pull from config later
