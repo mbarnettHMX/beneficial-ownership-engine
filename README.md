@@ -27,7 +27,7 @@ For Azure Synapse deployment refer to the [Synapse Deployment Instructions](http
 
 For local deployment on a laptop, desktop, or virtual machine, follow the instructions in [Local Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/LOCAL_DEPLOY.md).
 
-## Web Server and API to Support Reporting Generation
+## Web Server and API for Reporting Generation
 
 ### Installation
 
