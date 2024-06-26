@@ -27,24 +27,22 @@ For Azure Synapse deployment refer to the [Synapse Deployment Instructions](http
 
 For local deployment on a laptop, desktop, or virtual machine, follow the instructions in [Local Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/LOCAL_DEPLOY.md).
 
-## Web Application to Support Reporting Capabilities
+## Web Server to Support Reporting Capabilities
 
-### API
+### Web Server and API
 
-To install the dependencies needed for the API, execute the following commands from the `python/api-backend` folder:
+To install the dependencies needed for the web server and API, execute the following commands from the `python/api-backend` folder:
 
 ```bash
 pip install poetry
 poetry install
 ```
 
-To run the backend API execute from the root of the project:
+To run the backend web server and API execute from the root of the project:
 
 ```bash
 docker-compose up backend_api --build
 ```
-
-### Report
 
 To run the UI, you can either use `docker-compose` or install node and yarn and execute the following commands from the root of the project:
 
@@ -54,7 +52,7 @@ yarn build
 yarn start # run the webapp locally
 ```
 
-The webapp will be available at http://localhost:3000
+The web server can now be accessed at http://localhost:3000
 
 ## References
 
