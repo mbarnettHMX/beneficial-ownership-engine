@@ -7,7 +7,7 @@ This tutorial describes how to set up the development environment for the Benefi
 1. [Docker](https://docs.docker.com/engine/install/)
 2. [Visual Studio Code](https://code.visualstudio.com/)
 3. [Visual Studio Code Remote Development Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
-4. [GIT] (https://git-scm.com/downloads)
+4. [GIT] (<https://git-scm.com/downloads>)
 
 You can follow the instructions [here](https://code.visualstudio.com/docs/devcontainers/containers) for developing inside a Docker container.
 
@@ -22,6 +22,7 @@ Once the prerequsite software is installed clone using GIT and a command prompt.
 ```Power Shell
 git clone <repository URL>
 ```
+
 Where `<repository URL>` must be replaced with the URL that you copied above.
 
 Next, you can start Visual Studio Code from Power Shell with the following commands and note that you must first navigate to the /python/transparency-engine folder before invoking Visual Studio Code with the `code` command. The following commands assume you are starting from the local folder loaction into which you cloned the repository, for example `C:\Users\myUserID\source\repos\BeneficialOwnership'.
@@ -30,6 +31,7 @@ Next, you can start Visual Studio Code from Power Shell with the following comma
 cd beneficial-ownership-engine\python\transparency-engine
 code .
 ```
+
 THe `code` command will start Visual Studio Code. When Visual Studio Code opens, click on the Explorer icon on the navigation pane at left, select the 'transparency_engine' folder then select 'Terminal->New Terminal' to open a Power Shell in that folder.
 
 ### Configuring and Triggering the Pipeline
@@ -63,7 +65,7 @@ poetry run python transparency_engine/main.py --config samples/config/pipeline.j
 
 ## Power BI Template, Web Server & API for Report Generation
 
-Once Beneficial Ownership Engine results have been generated following the steps above, you can visualize the results with a Power BI template provided for this purpose. [Power BI Desktop](https://www.microsoft.com/en-in/download/details.aspx?id=58494) is required to load the template. 
+Once Beneficial Ownership Engine results have been generated following the steps above, you can visualize the results with a Power BI template provided for this purpose. [Power BI Desktop](https://www.microsoft.com/en-in/download/details.aspx?id=58494) is required to load the template.
 
 Follow these steps to view the Beneficial Ownership Engine results:
 
@@ -96,4 +98,81 @@ yarn build
 yarn start # run the webapp locally
 ```
 
-The web server can now be accessed at http://localhost:3000
+The web server can now be accessed at <http://localhost:3000>
+
+## Notes on Running the Beneficial Ownership Engine Locally
+
+The Beneficial Ownership Engine requires compute resources that can exceed the available processing capacity and local memory on some machines. For reference, the machine used for testing hte local deployment was configured with a Intel(R) Xeon(R) CPU E3-1505M v5 @ 2.80GHz-2.81GHz processor with 64GBytes of installed RAM.
+
+Two changes were made to the Spark configuration in the '\python\transparency-engine\transparency-engine\Dockerfile before deployment and these changes have been made to this repository.
+
+```
+ENV SPARK_EXECUTOR_MEMORY=4g
+ENV SPARK_DRIVER_MEMORY=16g
+```
+
+These commands are used to set environment variables in Apache Spark deployment, specifically for configuring the memory usage:
+
+- ENV SPARK_EXECUTOR_MEMORY=4g: This command sets the amount of memory to be used by each executor process, i.e., each running task. Here, it’s set to 4 gigabytes. The executor memory is the memory that Spark uses to run data processing tasks.
+- ENV SPARK_DRIVER_MEMORY=16g: This command sets the amount of memory to be used by the driver program, which is the program that declares the transformations and actions on data and submits such requests to the system. Here, it’s set to 16 gigabytes. The driver memory is the memory that Spark uses to run the driver program’s operations.
+
+These settings are important determinant of performance. If not enough memory is allocated, the Beneficial Ownership Engine may fail with OutOfMemory errors. Conversely, if too much memory is allocated, resources that could be used by other applications may be wasted. Therefore, it’s important to tune these parameters according to the needs of your specific analysis use case.
+
+In addition to the Spark configurations above, two additional changes are made to the '\python\transparency-engine\transparency-engine\spark\utils.py' file to address port availability and timeout issues:
+
+```
+# Initialize SparkSession and SparkContext
+config = SparkConf().setAll([("spark.executor.allowSparkContext", "true"), ("spark.port.maxRetries", "200"),("spark.ui.port", "14058"),("spark.sql.broadcastTimeout", "3600")]) 
+```
+
+Finally, experience with the Beneficial Ownership Engine both locally and in Azure deployments has shown that when OutOfMemory errors occur at a specific step in the processing steps (see [pipeline.json](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/python/transparency-ending/samples/config/pipeline.json))it is possible to remove the previous steps in the pipleine from [steps.json](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/python/transparency-ending/samples/config/steps.json) and rerun by executing the `poetry run python transparency_engine/main.py...` command described above. In practice, this results in a completed run and output of all the required output files in the local 'python\transparency-engine\output\' folder. 
+
+The complete list of 32 folders (containing parquet file(s)) generated by the Beneficial Ownership Engine upon successful complete are as follows:
+
+```
+06/18/2024  01:17 PM    <DIR>          activity
+06/18/2024  10:58 PM    <DIR>          activity_filtered_graph
+06/18/2024  10:58 PM    <DIR>          activity_filtered_links
+06/18/2024  10:45 PM    <DIR>          activity_links
+06/18/2024  01:21 PM    <DIR>          activity_prep
+06/18/2024  01:48 PM    <DIR>          attributeDefinition
+06/18/2024  01:48 PM    <DIR>          attributeDefinition_prep
+06/18/2024  01:21 PM    <DIR>          contact
+06/18/2024  01:35 PM    <DIR>          contact_fuzzy_match
+06/18/2024  01:54 PM    <DIR>          contact_links
+06/18/2024  01:43 PM    <DIR>          contact_prep
+06/18/2024  01:46 PM    <DIR>          entity
+06/18/2024  01:46 PM    <DIR>          entityReviewFlag
+06/18/2024  01:46 PM    <DIR>          entityReviewFlag_metadata
+06/18/2024  01:48 PM    <DIR>          entityReviewFlag_prep
+06/20/2024  08:45 PM    <DIR>          entity_activity_link_report
+06/20/2024  08:32 PM    <DIR>          entity_activity_report
+06/20/2024  08:45 PM    <DIR>          entity_attributes_report
+06/20/2024  08:46 PM    <DIR>          entity_graph_report
+06/18/2024  01:46 PM    <DIR>          entity_prep
+06/20/2024  08:45 PM    <DIR>          entity_related_activity_overall_report
+06/20/2024  08:40 PM    <DIR>          entity_related_activity_report
+06/20/2024  06:41 PM    <DIR>          entity_scoring
+06/20/2024  08:34 PM    <DIR>          entity_temporal_activity_report
+06/20/2024  08:52 PM    <DIR>          html_report
+06/20/2024  06:39 PM    <DIR>          macro_filtered_links
+06/18/2024  11:04 PM    <DIR>          macro_links
+06/20/2024  06:44 PM    <DIR>          network_scoring
+06/18/2024  01:43 PM    <DIR>          ownership
+06/18/2024  02:00 PM    <DIR>          ownership_links
+06/18/2024  01:46 PM    <DIR>          ownership_prep
+06/20/2024  08:52 PM    <DIR>          report_url
+```
+
+Of these generated files, ?? are required by the Power BI files provided in the '\powerbi\' folder:
+
+- entity_activity_report
+- entity_attributes_report
+- entity_graph_report
+- entityReviewFlag
+- entityreviewflag_metadata
+- network_scoring
+- entity_temporal_activity_report
+- entity_related_activity_report
+- entity_related_activity_overall_report
+- report_url

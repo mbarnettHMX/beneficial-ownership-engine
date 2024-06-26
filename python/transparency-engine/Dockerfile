@@ -18,7 +18,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
 
-ENV SPARK_EXECUTOR_MEMORY=2g
+ENV SPARK_EXECUTOR_MEMORY=4g
+ENV SPARK_DRIVER_MEMORY=16g
 
 # Install necessary dependencies to compile
 # C++11 support needed for gensim
