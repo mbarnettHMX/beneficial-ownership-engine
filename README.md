@@ -12,7 +12,7 @@ Beneficial Ownership Engine consists of three components:
 
 1. Processing Pipeline: Python package that manages processing of the seven (7) required input files using graph modeling techniques to detect networks of closely-related entities.
 2. Web Server & API: A web server and API for querying the results produced by the Beneficial Ownership Processing pipeline.
-3. Power BI and HTML Reports: A [Beneficial Ownership Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/tree/main/powerbi) is provided for reviweing Beneficial Ownership Engine reulst, and a React-based web server can be deployed to enable viewing of the entity narrative reports and exporting the reports to PDF files.
+3. Power BI and HTML Reports: A [Beneficial Ownership Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/tree/main/powerbi) is provided for reviewing Beneficial Ownership Engine results, and a React-based web server can be deployed to enable generation of entity narrative reports that can also be exported to PDF file format.
 
 ## Getting Started
 
