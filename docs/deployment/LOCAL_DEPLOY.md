@@ -73,7 +73,7 @@ Follow these steps to view the Beneficial Ownership Engine results:
 
 ### Web Server and API Installation
 
-The Power BI report includes a 'report_url_local' table containing HTML reports for each EntityID in the Beneficial Ownership Engine analysis. The 'ReportLink' column of this table can be added to the 'Entity Scores' table as a column. Use the 'Format visuals -> Cell elements' with 'Web URL' On to display the URLs as links, then follow the instructions below to deloy a local web application and API to support displa of the HTML reports.
+The Power BI report includes a 'report_url_local' table containing HTML reports for each EntityID in the Beneficial Ownership Engine analysis. The 'ReportLink' column of this table can be added to the 'Entity Scores' table as a column. Use the 'Format visuals -> Cell elements' with 'Web URL' On to display the URLs as links, then follow the instructions below to deloy a local web application and API to support display of the HTML reports in a browser.
 
 To install the dependencies needed for the web server and API, execute the following commands from the `python\api-backend` folder:
 
