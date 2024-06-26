@@ -4,4 +4,6 @@ WORKDIR /app
 COPY ./build ./build
 COPY package.deployed.json package.json
 RUN npm install --production
-CMD ["npm", "run", "start"]
+RUN npm install -g pm2
+ENTRYPOINT ["pm2-runtime", "start", "npm", "--name", "your-app-name", "--", "start", "--", "--port", "3000"]
+
