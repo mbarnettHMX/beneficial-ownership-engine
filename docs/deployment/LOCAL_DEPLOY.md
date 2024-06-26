@@ -62,3 +62,38 @@ To run the pipeline, once in Docker interactive mode, execute the following comm
 ```bash
 poetry run python transparency_engine/main.py --config samples/config/pipeline.json --steps samples/config/steps.json
 ```
+
+## Power BI Template, Web Server & API for Report Generation
+
+Once Beneficial Ownership Engine results have been generated following the steps above, you can visualize the results with a Power BI template provided for this purpose. [Power BI Desktop](https://www.microsoft.com/en-in/download/details.aspx?id=58494) is required to load the template. 
+
+Follow these steps to view the Beneficial Ownership Engine results:
+
+1. Download the [local version of the Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/powerbi/BeneficialOwnershipEngine.pbit) and double-click the file to open in Power BI Desktop.
+2. In the 'BeneficialOwnershipEngine-local' dialog enter the Path to the folder containing the Beneficial Ownership Engine results, ensuring that the final `\` is included in the path, then click OK. By default, Beneficial Ownership Engine results are writting to the local `...\python\transparency-engine\output\` folder, so a typical Path would be `C:\Users\<yourUserName>\source\repos\BeneficialOwnershipEngine\beneficial-ownership-engine\python\transparency-engine\output\demo\`, where `<yourUserName>` must be replaced with the local machine login id.
+3. When the data loading is complete, start by viewing the Entity Ranking tab.
+
+### Web Server and API Installation
+
+To install the dependencies needed for the web server and API, execute the following commands from the `python/api-backend` folder:
+
+```bash
+pip install poetry
+poetry install
+```
+
+To run the backend web server and API execute from the root of the project:
+
+```bash
+docker-compose up backend_api --build
+```
+
+To run the UI, you can either use `docker-compose` or install node and yarn and execute the following commands from the root of the project:
+
+```bash
+yarn
+yarn build
+yarn start # run the webapp locally
+```
+
+The web server can now be accessed at http://localhost:3000

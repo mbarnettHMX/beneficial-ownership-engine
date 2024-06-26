@@ -29,30 +29,7 @@ For local deployment on a laptop, desktop, or virtual machine, follow the instru
 
 ## Web Server and API for Report Generation
 
-### Installation
-
-To install the dependencies needed for the web server and API, execute the following commands from the `python/api-backend` folder:
-
-```bash
-pip install poetry
-poetry install
-```
-
-To run the backend web server and API execute from the root of the project:
-
-```bash
-docker-compose up backend_api --build
-```
-
-To run the UI, you can either use `docker-compose` or install node and yarn and execute the following commands from the root of the project:
-
-```bash
-yarn
-yarn build
-yarn start # run the webapp locally
-```
-
-The web server can now be accessed at http://localhost:3000
+Deployment of the Web Server and API for report generation is different for Beneficial Ownership Engine local and Azure deployments. If you have deployed the engine in Azure, refer to the [AKS Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/AKS_DEPLOY.md). If you have created a local delployment of the engine, the web server and API installation instructions are included in the [Local Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/LOCAL_DEPLOY.md).
 
 ## References
 
