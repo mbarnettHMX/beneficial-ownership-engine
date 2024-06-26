@@ -82,7 +82,7 @@ Next, install Terraform using the instructions [here](https://developer.hashicor
 
 ---
 
-## Login to Azure in the WSL environment
+## Login to Azure in the WSL Environment
 
 In the Ubuntu 22.04(WSL) terminal opened in the 'Connect to Ubuntu WSL with VS Code' step, run the following commands:
 
@@ -91,9 +91,9 @@ In the Ubuntu 22.04(WSL) terminal opened in the 'Connect to Ubuntu WSL with VS C
     az account set --subscription mysubscriptionID
 ```
 
-## Set Terraform variables as needed in the file
+## Set Terraform variables
 
-In the file named terraform.tfvars in the synapse_deploy folder, change the values of the following variables:
+In the file named terraform.tfvars in the 'synapse_deploy' folder, change the values of the following variables:
 
 Variable | Description
 --- |  ---

@@ -69,15 +69,15 @@ Once Beneficial Ownership Engine results have been generated following the steps
 
 Follow these steps to view the Beneficial Ownership Engine results:
 
-1. Download the [local version of the Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/powerbi/BeneficialOwnershipEngine.pbit) and double-click the file to open in Power BI Desktop.
-2. In the 'BeneficialOwnershipEngine-local' dialog enter the Path to the folder containing the Beneficial Ownership Engine results, ensuring that the final `\` is included in the path, then click OK. By default, Beneficial Ownership Engine results are writting to the local `...\python\transparency-engine\output\` folder, so a typical Path would be `C:\Users\<yourUserName>\source\repos\BeneficialOwnershipEngine\beneficial-ownership-engine\python\transparency-engine\output\demo\`, where `<yourUserName>` must be replaced with the local machine login id.
+1. Download the [local version of the Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/powerbi/BeneficialOwnershipEngine-local.pbit) and double-click the file to open in Power BI Desktop.
+2. In the 'BeneficialOwnershipEngine-local' dialog enter the Path to the folder containing the Beneficial Ownership Engine results, ensuring that the final `\` is included in the path, then click 'OK'. By default, Beneficial Ownership Engine results are written to the local `...\python\transparency-engine\output\` folder, so a typical Path would be `C:\Users\<yourUserName>\source\repos\BeneficialOwnershipEngine\beneficial-ownership-engine\python\transparency-engine\output\demo\`, where `<yourUserName>` must be replaced with the local machine login id.
 3. When the data loading is complete, start by viewing the Entity Ranking tab.
 
 ### Web Server and API Installation
 
 The Power BI report includes a 'report_url_local' table containing HTML reports for each EntityID in the Beneficial Ownership Engine analysis. The 'ReportLink' column of this table can be added to the 'Entity Scores' table as a column. Use the 'Format visuals -> Cell elements' with 'Web URL' On to display the URLs as links, then follow the instructions below to deloy a local web application and API to support displa of the HTML reports.
 
-To install the dependencies needed for the web server and API, execute the following commands from the `python/api-backend` folder:
+To install the dependencies needed for the web server and API, execute the following commands from the `python\api-backend` folder:
 
 ```bash
 pip install poetry
