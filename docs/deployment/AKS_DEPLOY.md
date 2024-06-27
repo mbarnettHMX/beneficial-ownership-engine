@@ -240,7 +240,105 @@ frontendImage: {ACR_NAME}.azurecr.io/frontend:latest
 
 ```
 
-## 7. Install the `causal-services` chart
+Update SQL values:  
+
+ ![image](images%2Fimage.png)  
+
+
+
+## 7. Install the ssl certificate
+
+Before deploying the final app lets setup the SSL. For that we will be
+using lets-encrypt along with cert-manager and implement the ssl
+using Cluster issuer.
+
+
+```bash
+> helm repo add jetstack https://charts.jetstack.io
+> helm repo update
+> helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx -f helm/aks/nginx-ingress.yaml --set controller.service.externalTrafficPolicy=Local
+```
+
+Create a new file named clusterissuer.yaml. 
+
+```yaml 
+
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: youremail
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
+  podTemplate:
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+
+```        
+Then apply this file 
+```bash
+> kubectl apply -f clusterissuer.yaml
+```
+
+
+
+Create two new files named frontend-certificate.yaml and backend-certificate.yaml
+
+```yaml 
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-secret-frontend
+  namespace: frontend
+spec:
+  secretName: tls-secret-frontend
+  dnsNames:
+    - transengine.eastus.cloudapp.azure.com
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+
+
+```   
+
+```yaml 
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-secret-backend
+  namespace: backend
+spec:
+  secretName: tls-secret-backend
+  dnsNames:
+    - transengine.eastus.cloudapp.azure.com
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+
+
+```     
+Then apply this file 
+```bash
+> kubectl apply -f frontend-certificate.yaml 
+> kubectl apply -f backend-certificate.yaml
+```
+
+Now in the values.yaml file update the ingress section of frontend and backend respectively. Add these lines in values.yaml in the ingress section 
+ ![image](images%2Fvalues-example.png)   
+  ![image](images%2Fvalues-backend.png)  
+
+
+## 8. Install the `causal-services` chart
 
 Now it's time to install our chart using the configuration file we just created:
 
@@ -248,7 +346,7 @@ Now it's time to install our chart using the configuration file we just created:
 > ./scripts/install-charts.sh helm/values.prod.yaml
 ```
 
-## 8. Verify all services are properly running
+## 9. Verify all services are properly running
 
 ```bash
 > ./scripts/list-resources.sh
@@ -256,6 +354,6 @@ Now it's time to install our chart using the configuration file we just created:
 
 You should see the services up and running according to their namespace.
 
-## 9. Access application
+## 10. Access application
 
 The application should now be available at: `https://{DOMAIN}`.
