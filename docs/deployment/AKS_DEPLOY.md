@@ -1,6 +1,5 @@
 # Deploying to AKS
 
-NOTE: These instructions currently are under review and subject to change.
 
 This tutorial describes how to create and configure a Kubernetes cluster on Azure (AKS) and run a Kubernetes Helm chart to deploy the Beneficial Ownership Engine API required for HTML report generation.
 
