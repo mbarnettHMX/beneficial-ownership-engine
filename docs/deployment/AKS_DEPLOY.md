@@ -327,15 +327,15 @@ spec:
 
 
 ```     
-Then apply this file 
+Then apply these files 
 ```bash
 > kubectl apply -f frontend-certificate.yaml 
 > kubectl apply -f backend-certificate.yaml
 ```
 
 Now in the values.yaml file update the ingress section of frontend and backend respectively. Add these lines in values.yaml in the ingress section 
- ![image](images%2Fvalues-example.png)   
-  ![image](images%2Fvalues-backend.png)  
+![image](images%2Fvalues-example.png)   
+![image](images%2Fvalues-backend.png)  
 
 
 ## 8. Install the `causal-services` chart
