@@ -1,7 +1,6 @@
 # Deploying to AKS
 
-
-This tutorial describes how to create and configure a Kubernetes cluster on Azure (AKS) and run a Kubernetes Helm chart to deploy the Beneficial Ownership Engine API required for HTML report generation.
+This document describes how to create and configure a Kubernetes cluster on Azure (AKS) and run a Kubernetes Helm chart to deploy the Beneficial Ownership Engine API required for HTML report generation.
 
 ## 0. Pre-requirements
 
@@ -35,7 +34,7 @@ Next, create the resource group that will store the AKS cluster.
 
 ### 2.1. AKS Cluster
 
-> In this example the cluster will be created with 2 nodes.
+> In this example the cluster is created with 2 nodes.
 
 ```bash
 > az aks create -g {RESOURCE_GROUP_NAME} -n {AKS_CLUSTER_NAME} --enable-managed-identity --node-count 2 --enable-addons monitoring --enable-msi-auth-for-monitoring --generate-ssh-keys --location {LOCATION}
@@ -94,7 +93,7 @@ controller:
 
 > Replace {INGRESS_STATIC_IP} with the IP you got in the previous steps.
 
-Notice `externalTrafficPolicy: Local`, which is important so that the real IPs for the incoming requests are logged in the ingress controller, instead of the IPs in the local cluster.
+Notice `externalTrafficPolicy: Local`, which is important so that the real IPs for the incoming requests are logged in the ingress controller, instead of the local cluster.
 
 Now the NGINX ingress controller can be deployed to the cluster:
 
@@ -112,11 +111,11 @@ Successful deployment can be confirmed by running:
 
 You should see the deployed ingress controller configured with the specified external IP.
 
-> Another way around it is to provide the access tokens to the ACR directly through kubernetes secrets.
+> Another method is to provide the access tokens to the ACR directly through Kubernetes secrets.
 
 ## 4. Container registry
 
-We will now create an Azure Container Registry (ACR) to store the services' images that will run in our cluster.
+Next, create an Azure Container Registry (ACR) to store the services' images that will run in the Kubernetes cluster.
 
 ### 4.1. Create ACR
 
@@ -126,21 +125,21 @@ We will now create an Azure Container Registry (ACR) to store the services' imag
 
 ### 4.2. Attach ACR to AKS
 
-We need to attach our ACR to AKS, so the cluster can read the images from the registry. Notice that this will require `Owner` role on the subscription:
+We need to attach the ACR to AKS, so the cluster can read images from the registry. Notice that this requires `Owner` role on the subscription:
 
 ```bash
 > az aks update -n {AKS_CLUSTER_NAME} -g {RESOURCE_GROUP_NAME} --attach-acr {ACR_NAME}
 ```
 
-### 4.3. (If you're running this manually, without the pipeline)
+### 4.3. Manual Operation
 
-#### Login to acr first 
+#### Login to ACR
 
 ```bash
 > az acr login -n {ACR_NAME}
 ```
 
-#### Deploy to your acr:
+#### Deploy to the acr
 
 `cd javascript/webapp && yarn install && yarn bundle`
 `./scripts/build-frontend-images.sh`
@@ -152,24 +151,24 @@ We need to attach our ACR to AKS, so the cluster can read the images from the re
 
 ## 5. Authentication
 
-To authenticate requests made to the services in the cluster we will use the [OAuth2 Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) service.
+To authenticate requests made to the services in the cluster we use the [OAuth2 Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) service.
 
 ### 5.1. App registration on Azure Active Directory
 
-We need to create our APP registration on Azure Active Directory:
+First create an APP registration on Azure Entra ID (previouly Azure Active Directory):
 
 1. Create the new APP registration (Single tenant).
-2. In the `Authentication` left menu add a new Web Platform configuration with:
+2. In the `Authentication` left menu, add a new Web Platform configuration with:
 1. Redirect URL: `https://{DOMAIN}.cloudapp.azure.com/oauth2/callback`.
 2. Front-channel logout URL: `https://{DOMAIN}.cloudapp.azure.com/oauth2/sign_out`.
-3. In the `Certificates & secrets` left menu add a new client secret. Make sure to copy the newly created secret value, which will be the `{CLIENT_SECRET}` used below.
+3. In the `Certificates & secrets` left menu, add a new client secret. Make sure to copy the newly created secret value, which will be the `{CLIENT_SECRET}` used below.
 4. In the `API permissions` left menu click on `Microsoft.Graph` and select the `email` and `openid` permissions (OpenID permissions). You won't need `User.Read`, so you can remove it.
 5. In the `Expose an API` left menu, click on `set` near to `Application ID URI`, use the suggested value and click `Save`.
 6. In the `Manifest` left menu, add or update the `accessTokenAcceptedVersion` in the JSON config to `2` (integer, not string - `"accessTokenAcceptedVersion": 2`).
 
 ### 5.2. Configure secrets for causal-services Helm Chart
 
-The `causal-services` helm chart is configured to use OAuth2 Proxy to authenticate and authorize requests. For it to properly work we will need to create a few secrets in the kubernetes cluster. The following file (`oauth-secrets.yaml`) highlights them:
+The `causal-services` helm chart is configured to use OAuth2 Proxy to authenticate and authorize requests. For it to properly work we will need to create a few secrets in the Kubernetes cluster. The following file (`oauth-secrets.yaml`) is used:
 
 ```yaml
 apiVersion: v1
@@ -186,7 +185,7 @@ stringData:
   cookie-name: { COOKIE_NAME }
 ```
 
-- Replace `{TENANT_ID}`, `{CLIENT_ID}` and `{CLIENT_SECRET}` with information from your App Registration (available in the `Overview` left menu).
+- Replace `{TENANT_ID}`, `{CLIENT_ID}` and `{CLIENT_SECRET}` with information from the App Registration (available in the `Overview` left menu).
 
 - `{RANDOMLY_GENERATED_COOKIE_SECRET}` can be generated using:
 
@@ -194,9 +193,9 @@ stringData:
   python -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'
   ```
 
-- `{COOKIE_NAME}` is the cookie name in the browser that will store the auth token (e.g. `_auth_token`).
+- `{COOKIE_NAME}` is the cookie name in the browser that will store the authorization token (e.g. `_auth_token`).
 
-Once you have the file properly set, create the namespace for the oauth service and apply the secrets to the cluster:
+Once the file is configured correclty, create the namespace for the oauth service and apply the secrets to the cluster:
 
 ```bash
 > kubectl create namespace oauth-proxy
@@ -205,16 +204,13 @@ Once you have the file properly set, create the namespace for the oauth service 
 
 ## 6. Create chart configuration file
 
-The default configuration for the `causal-services`' chart can be seen at [`values.yaml`](../config/helm/causal-services/values.yaml). We will need to update a few values according to what we have just created and configured. To do so, update the  YAML file at location /helm/values.prod.yaml (`values.prod.yaml`) containing the values we need to update (replace the values with `{}` with the proper Aconfiguration):
-
-
+The default configuration for the `causal-services`' chart can be seen at [`values.yaml`](../config/helm/causal-services/values.yaml). We will need to update a few values according to what we have just created and configured. To do so, update the YAML file at location /helm/values.prod.yaml (`values.prod.yaml`) containing the values we need to update (replace the values with `{}` with the proper Aconfiguration):
 
 ```yaml
 domain: { DOMAIN }
 ```
-Also update values.yaml  at location helm/values.yaml
-Update the following values already present in the file.
 
+Also update values.yaml at location helm/values.yaml wit the following values already present in the file.
 
 ```yaml
 domain: { DOMAIN }
@@ -243,14 +239,10 @@ Update SQL values:
 
  ![image](images%2Fimage.png)  
 
-
-
 ## 7. Install the ssl certificate
 
-Before deploying the final app lets setup the SSL. For that we will be
-using lets-encrypt along with cert-manager and implement the ssl
+Before deploying the final application it is necessary to setup a SSL. Use lets-encrypt along with cert-manager and implement the sSSLl
 using Cluster issuer.
-
 
 ```bash
 > helm repo add jetstack https://charts.jetstack.io
@@ -258,9 +250,9 @@ using Cluster issuer.
 > helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx -f helm/aks/nginx-ingress.yaml --set controller.service.externalTrafficPolicy=Local
 ```
 
-Create a new file named clusterissuer.yaml. 
+Create a new file named clusterissuer.yaml.
 
-```yaml 
+```yaml
 
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -281,17 +273,17 @@ spec:
       nodeSelector:
         kubernetes.io/os: linux
 
-```        
-Then apply this file 
+```
+
+Then apply this file
+
 ```bash
 > kubectl apply -f clusterissuer.yaml
 ```
 
+Create two new files named frontend-certificate.yaml and backend-certificate.yaml:
 
-
-Create two new files named frontend-certificate.yaml and backend-certificate.yaml
-
-```yaml 
+```yaml
 
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -307,9 +299,9 @@ spec:
     kind: ClusterIssuer
 
 
-```   
+```
 
-```yaml 
+```yaml
 
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -325,17 +317,18 @@ spec:
     kind: ClusterIssuer
 
 
-```     
-Then apply these files 
+```
+
+Then apply these files:
+
 ```bash
 > kubectl apply -f frontend-certificate.yaml 
 > kubectl apply -f backend-certificate.yaml
 ```
 
-Now in the values.yaml file update the ingress section of frontend and backend respectively. Add these lines in values.yaml in the ingress section 
-![image](images%2Fvalues-example.png)   
+Now in the values.yaml file update the ingress section of frontend and backend respectively. Add these lines in values.yaml in the ingress section
+![image](images%2Fvalues-example.png)
 ![image](images%2Fvalues-backend.png)  
-
 
 ## 8. Install the `causal-services` chart
 

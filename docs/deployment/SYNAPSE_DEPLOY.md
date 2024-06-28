@@ -1,4 +1,4 @@
-build# Synapse Deployment Instructions
+# Synapse Deployment Instructions
 
 Follow the steps below to deploy Azure Synapse and supporting storage account and Spark cluster for the Beneficial Ownership Engine.
 
@@ -11,9 +11,10 @@ We will need:
 - [Python 3.8](https://www.python.org/downloads/release/python-380/)
 
 ---
+
 ## Install pip and poetry
 
-The pip package manager is requred to install the Poetry tool. To install pip in PowerShell, follow these steps:
+The pip package manager is required to install the Poetry tool. To install pip in PowerShell, follow these steps:
 
 1. Download the get-pip.py script from the [this website](https://bootstrap.pypa.io/get-pip.py).
 2. Open PowerShell with Administrative access.
@@ -30,13 +31,15 @@ If you want to upgrade your existing pip installation, you can do so by running 
 python -m pip install --upgrade pip
 ```
 
-The Poetry package, a tool for dependency management and packaging in Python, is required to build the wheel file. These installation instructions have been tested with PowerShell. For alternative installations, please see instructions at [the Poetry website](https://python-poetry.org/docs/). 
+The Poetry package, a tool for dependency management and packaging in Python, is required to build the wheel file. These installation instructions have been tested with PowerShell. For alternative installations, please see instructions at [the Poetry website](https://python-poetry.org/docs/).
 
 1. Open PowerShell with Administrative access.
 2. In the PowerShell window, paste the following command and press Enter:
+
 ``` PowerShell
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
-``` 
+```
+
 3. Once the installation is complete, it will provide you with a path. Copy this path as you’ll need to add it to your user environment variables.
 4. Right-click on the Start button and select “System”. In the System window, click on “Advanced system settings” on the left sidebar. In the System Properties window, click on the “Environment Variables…” button. In the Environment Variables window, under “User variables for [YourUsername]”, find the “PATH” variable and select it. Click on the “Edit…” button. In the Edit Environment Variable window, click on “New” and paste the path you copied from the installation process. Click “OK” on all open windows to save your changes.
 5. Close the PowerShell window and open a new PowerShell. This is necessary for PowerShell to recognize the change in PATH.
@@ -44,8 +47,9 @@ The Poetry package, a tool for dependency management and packaging in Python, is
 
 ``` powershell
 poetry --version
-``` 
-If Poetry has been successfully installed, you should see its version number printed in the termina.
+```
+
+If Poetry has been successfully installed, you should see its version number printed in the terminal.
 
 ## Generate wheel file
 
@@ -55,6 +59,7 @@ After installing python 3.8, pip, and Poetry, run the following commands from th
     cd .\python\transparency-engine\
     poetry build
 ```
+
 You should see the following in output in PowerShell:
 
 ``` powershell
@@ -98,7 +103,7 @@ In the file named terraform.tfvars in the 'synapse_deploy' folder, change the va
 Variable | Description
 --- |  ---
 resource_group_name |  The Name of the resource group into which the resources are deployed.
-location_for_resoruces | The location where the resources will be deployed.
+location_for_resources | The location where the resources will be deployed.
 
 Next, run the following commands:
 
@@ -107,6 +112,10 @@ Next, run the following commands:
     terraform -chdir=synapse_deploy apply --auto-approve
 ```
 
-Once these commands complete you will see a success message indicating that the resources are deployed. This completes the Synapse deployment required for the Beneficial Ownership Engine.
+Once these commands complete you will see a success message indicating that the resources are deployed. If you encounter errors while deploying, the Terraform commands above can be re-applied, and this may resolve the errors encountered.
 
-If you encounter errors while deploying, the Terraform commands above can be re-applied, and this may resolve the errors encountered.
+## Install the Azure Kubernetes Web App
+
+The Beneficial Ownership Engine uses an API to Kubernetes web application for generation of HTML reports accessible from the Power BI template, Entity Ranking report. Follow the instructions in the [AKS Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/AKS_DEPLOY.md) to deploy the required web application.
+
+This completes the Synapse deployment required for the Beneficial Ownership Engine.

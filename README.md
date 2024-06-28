@@ -21,15 +21,11 @@ There are two deployment options for the Beneficial Ownership Engine:
 1. Azure Synapse deployment, and
 2. Local deployment.
 
-Efficient processing is important for the Beneficial Ownership Engine, especially for large datasets, thus the Azure Synapse deployment is reccommended.
+Efficient processing is important for the Beneficial Ownership Engine, especially for large datasets, thus the Azure Synapse deployment is recommended.
 
 For Azure Synapse deployment refer to the [Synapse Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/SYNAPSE_DEPLOY.md) document.
 
 For local deployment on a laptop, desktop, or virtual machine, follow the instructions in [Local Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/LOCAL_DEPLOY.md).
-
-## Web Server and API for Report Generation
-
-Deployment of the Web Server and API for report generation is different for Beneficial Ownership Engine local and Azure deployments. If you have deployed the engine in Azure, refer to the [AKS Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/AKS_DEPLOY.md). If you have created a local delployment of the engine, the web server and API installation instructions are included in the [Local Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/LOCAL_DEPLOY.md).
 
 ## References
 
