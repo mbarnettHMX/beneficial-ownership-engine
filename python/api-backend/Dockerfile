@@ -7,8 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Install necessary dependencies to compile
-RUN apt-get update -y \
-    && apt-get install -y gcc \
+RUN apt-get install -y gcc \
     && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
 
