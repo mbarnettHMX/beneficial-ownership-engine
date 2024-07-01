@@ -7,7 +7,7 @@ This tutorial describes how to set up the development environment for the Benefi
 1. [Docker](https://docs.docker.com/engine/install/)
 2. [Visual Studio Code](https://code.visualstudio.com/)
 3. [Visual Studio Code Remote Development Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
-4. [GIT] (<https://git-scm.com/downloads>)
+4. [GIT](<https://git-scm.com/downloads>)
 
 You can follow the instructions [here](https://code.visualstudio.com/docs/devcontainers/containers) for developing inside a Docker container.
 
