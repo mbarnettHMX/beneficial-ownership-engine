@@ -2,7 +2,7 @@
 
 This tutorial describes how to set up the development environment for the Beneficial Ownership Engine components locally using Docker.
 
-## Pre-requisites
+## Prerequisites
 
 1. [Docker](https://docs.docker.com/engine/install/)
 2. [Visual Studio Code](https://code.visualstudio.com/)
