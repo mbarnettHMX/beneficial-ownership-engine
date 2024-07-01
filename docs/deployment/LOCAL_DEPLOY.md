@@ -17,7 +17,7 @@ To run the Beneficial Ownership Engine processing pipeline locally, ensure that 
 
 ### Cloning the Repository and Starting Visual Studio Code
 
-Once the prerequisite software is installed clone using GIT and a command prompt. Choose a new, local folder for the repository, navigate to the new folder, and clone the repository. You can obtain the required repository URL from the 'Code' (green button) on the GitHub Beneficial Ownership landing page:
+Once the prerequisite software is installed clone this repository using GIT and a command prompt: choose a new, local folder for the repository, navigate to the new folder, and clone the repository using the following command in Power Shell. You can obtain the required repository URL from the 'Code' (green button) on the GitHub Beneficial Ownership landing page:
 
 ```Power Shell
 git clone <repository URL>
@@ -32,7 +32,7 @@ cd beneficial-ownership-engine\python\transparency-engine
 code .
 ```
 
-THe `code` command will start Visual Studio Code. When Visual Studio Code opens, click on the Explorer icon on the navigation pane at left, select the 'transparency_engine' folder then select 'Terminal->New Terminal' to open a Power Shell in that folder.
+THe `code` command will start Visual Studio Code with the current folder opened. In Visual Studio Code, click on the Explorer icon on the navigation pane at left, select the 'transparency_engine' folder then select 'Terminal->New Terminal' to open a Power Shell in that folder.
 
 ### Configuring and Triggering the Pipeline
 
