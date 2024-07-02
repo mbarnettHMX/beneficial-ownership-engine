@@ -210,7 +210,7 @@ The default configuration for the `causal-services`' chart can be seen at [`valu
 domain: { DOMAIN }
 ```
 
-Also update values.yaml at location helm/values.yaml wit the following values already present in the file.
+Also update values.yaml at location helm/values.yaml with the following values already present in the file.
 
 ```yaml
 domain: { DOMAIN }
@@ -235,13 +235,13 @@ frontendImage: {ACR_NAME}.azurecr.io/frontend:latest
 
 ```
 
-Update SQL values:  
+Update the SQL values shown in the image below. The database name, endpoint, username and password refer to the data lake create by the NB_Run_Transparency_Engine Synapse pipeline. Entries with '_TABLE' refer to default values for folders output by the Beneficial Ownership Engine and do not require change if the default folder names are used.
 
  ![image](images%2Fimage.png)  
 
 ## 7. Install the ssl certificate
 
-Before deploying the final application it is necessary to setup a SSL. Use lets-encrypt along with cert-manager and implement the sSSLl
+Before deploying the final application it is necessary to setup a SSL. Use lets-encrypt along with cert-manager and implement the SSLl
 using Cluster issuer.
 
 ```bash
