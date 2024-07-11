@@ -8,7 +8,7 @@ The following are required to complete the deployment:
 
 - [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/),
 - [Helm](https://helm.sh/)
-- [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) installed locally installed.
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) installed locally
 - [Docker](https://docs.docker.com/engine/install/)
 
 ## 1. Initial setup
