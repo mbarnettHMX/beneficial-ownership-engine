@@ -9,7 +9,7 @@ packages = [{include = "api_backend"}]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.10"
-fastapi = "^0.89.1"
+fastapi = "^0.109.1"
 numpy = "^1.24.1"
 pandas = "^1.5.2"
 uvicorn = "^0.20.0"
@@ -17,24 +17,24 @@ python-dotenv = "^0.21.1"
 sqlalchemy = "^2.0.4"
 pandas-stubs = "^1.5.3.230214"
 pyodbc = "^4.0.35"
-pydantic = "^1.10.5"
+pydantic = "^1.10.13"
 
 [tool.poetry.group.utility.dependencies]
-gunicorn = "^20.1.0"
-pydantic = "^1.10.4"
+gunicorn = "^22.0.0"
+pydantic = "^1.10.13"
 
 
 [tool.poetry.group.graph.dependencies]
 celery = "^5.2.7"
 networkx = "^3.0"
 scikit-learn = "^1.2.0"
-redis = {extras = ["hiredis"], version = "^4.4.1"}
-python-multipart = "^0.0.5"
+redis = {extras = ["hiredis"], version = "^4.4.4"}
+python-multipart = "^0.0.7"
 
 
 [tool.poetry.group.dev.dependencies]
 watchfiles = "^0.18.1"
-black = "^22.12.0"
+black = "^24.3.0"
 isort = "^5.11.4"
 flake8 = "^4.0.1"
 poethepoet = "^0.18.0"
