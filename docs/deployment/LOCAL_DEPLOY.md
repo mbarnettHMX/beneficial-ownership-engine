@@ -50,7 +50,7 @@ docker build -t transparency-engine -f Dockerfile .
 Run the Docker container just created, using the -v option to  
 
 ```Power Shell
-docker run -v <path>:/workdir -it beneficial-ownership-engine
+docker run -v <path>:/workdir -it transparency-engine
 ```
 
 Where `<path>` must be replaced with the path to the `python/transparency-engine` folder. For clarity and to ensure the path syntax is correct, an example path is `/c/Users/myUserID/source/repos/BeneficialOwnershipEngine/beneficial-ownership-engine/python/transparency-engine`.
