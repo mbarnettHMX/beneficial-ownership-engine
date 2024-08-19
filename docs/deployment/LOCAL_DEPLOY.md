@@ -41,7 +41,7 @@ To configure the pipeline, edit the following two json files, located in the TRA
 - pipeline.json: Specify steps to be executed in the pipeline; however, initially this file should not be changed. The file is provided to allow running of some subset of the steps to selectively complete certain steps, or rerun steps.
 - steps.json: Specify configurations for each step of the pipeline. This file does not require changes if you want to accept the default configuration settings, and you are using as input the synthetic data provided in the folder samples\inut_data. If you want to modify the default settings or have changed the names or locations of the input data files, then this file must be modified accordingly.
 
-To build and run the Docker container from Power Shell, execute the following commands in sequence from the the python\transparency-engine folder and note the `.` at the end of the `docker build` command tells Docker to use the current directory as the build context:
+To build and run the Docker container ensure that Docker Desktop is runing, then from Power Shell execute the following commands in sequence from the the python\transparency-engine folder. Note the `.` at the end of the `docker build` command tells Docker to use the current directory as the build context:
 
 ```Power Shell
 docker build -t transparency-engine -f Dockerfile .
