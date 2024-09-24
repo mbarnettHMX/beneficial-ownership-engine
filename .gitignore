@@ -58,3 +58,20 @@ synapse_deploy/terraform.tfvars
 transparency_engine-0.1.0-py3-none-any.whl
 
 /python/transparency-engine/samples/config
+python/transparency-engine/samples/config/steps.json
+python/transparency-engine/samples/config/steps.json
+python/transparency-engine/samples/input_data/TCUactivity.csv
+python/transparency-engine/samples/config/steps.json
+python/transparency-engine/samples/config/steps.json
+python/transparency-engine/samples/input_data/TCUattributedefinitions.csv
+python/transparency-engine/samples/config/steps.json
+python/transparency-engine/samples/config/steps.json
+python/transparency-engine/samples/input_data/TCUcontact.csv
+python/transparency-engine/samples/config/steps.json
+python/transparency-engine/samples/input_data/TCUentityweight.csv
+python/transparency-engine/samples/input_data/TCUownership.csv
+python/transparency-engine/samples/input_data/TCUredflagdefinition.csv
+python/transparency-engine/samples/input_data/TCUredflags.csv
+python/transparency-engine/samples/config/steps.json
+python/transparency-engine/samples/config/steps.json
+python/transparency-engine/samples/config/steps.json
