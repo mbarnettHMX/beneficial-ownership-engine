@@ -19,7 +19,7 @@ To run the Beneficial Ownership Engine processing pipeline locally, ensure that 
 
 Once the prerequisite software is installed clone this repository using GIT and a command prompt: choose a new, local folder for the repository, navigate to the new folder, and clone the repository using the following command in Power Shell. You can obtain the required repository URL from the 'Code' (green button) on the GitHub Beneficial Ownership landing page:
 
-```Power Shell
+```PowerShell
 git clone <repository URL>
 ```
 
@@ -27,7 +27,7 @@ Where `<repository URL>` must be replaced with the URL that you copied above.
 
 Next, you can start Visual Studio Code from Power Shell with the following commands and note that you must first navigate to the /python/transparency-engine folder before invoking Visual Studio Code with the `code` command. The following commands assume you are starting from the local folder location into which you cloned the repository, for example `C:\Users\myUserID\source\repos\BeneficialOwnership'.
 
-```Power Shell
+```PowerShell
 cd beneficial-ownership-engine\python\transparency-engine
 code .
 ```
@@ -43,13 +43,13 @@ To configure the pipeline, edit the following two json files, located in the TRA
 
 To build and run the Docker container ensure that Docker Desktop is runing, then from Power Shell execute the following commands in sequence from the the python\transparency-engine folder. Note the `.` at the end of the `docker build` command tells Docker to use the current directory as the build context:
 
-```Power Shell
+```PowerShell
 docker build -t transparency-engine -f Dockerfile .
 ```
 
 Run the Docker container just created, using the -v option to  
 
-```Power Shell
+```PowerShell
 docker run -v <path>:/workdir -it transparency-engine
 ```
 
@@ -59,10 +59,16 @@ The `docker run` command will start the container in Docker interactive mode, in
 
 To run the pipeline, once in Docker interactive mode, execute the following command from the `/workdir` folder:
 
-```bash
+```PowerShell
 poetry run python transparency_engine/main.py --config samples/config/pipeline.json --steps samples/config/steps.json
 ```
-The above command runs the main.py script and you will see progress displayed in the PowerShell terminal. Depending on the size of the data, processing can take several hours. As an estimate, the synthetic data provided with the Beneficial Ownership Engine Accelerator (contained in the /samples/input_data folder) takes 8 to 10 hour to complete processing on the [reference machine](#refmachine).
+If you see the error "The currently activated Python version <some version of Python, e.g., 3.12.4> is not supported by the project (<3.10,>=3.8)", use the poetry "env use" command to set the version of Python:
+```PowerShell
+poetry env use C:\Users\<YourUsername>\AppData\Local\Programs\Python\Python38\python.exe
+```
+Where you must replace <YourUsername> with your actual Windows username. The path above is the default installation path for Python 3.8, which must be used for the Beneficial Ownership Engine.
+
+The `run python` command above runs the main.py script and you will see progress displayed in the PowerShell terminal. Depending on the size of the data, processing can take several hours. As an estimate, the synthetic data provided with the Beneficial Ownership Engine Accelerator (contained in the /samples/input_data folder) takes 8 to 10 hour to complete processing on the [reference machine](#refmachine).
 
 ## Power BI Template, Web Server & API for Report Generation
 
