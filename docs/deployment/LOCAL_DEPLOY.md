@@ -62,6 +62,7 @@ To run the pipeline, once in Docker interactive mode, execute the following comm
 ```bash
 poetry run python transparency_engine/main.py --config samples/config/pipeline.json --steps samples/config/steps.json
 ```
+The above command runs the main.py script and you will see progress displayed in the PowerShell terminal. Depending on the size of the data, processing can take several hours. As an estimate, the synthetic data provided with the Beneficial Ownership Engine Accelerator (contained in the /samples/input_data folder) takes 8 to 10 hour to complete processing on the [reference machine](#refmachine).
 
 ## Power BI Template, Web Server & API for Report Generation
 
@@ -102,7 +103,7 @@ The web server can now be accessed at <http://localhost:3000>
 
 ## Notes on Running the Beneficial Ownership Engine Locally
 
-The Beneficial Ownership Engine requires compute resources that can exceed the available processing capacity and local memory on some machines. For reference, the machine used for testing hte local deployment was configured with an Intel(R) Xeon(R) CPU E3-1505M v5 @ 2.80GHz-2.81GHz processor with 64GBytes of installed RAM.
+The Beneficial Ownership Engine requires compute resources that can exceed the available processing capacity and local memory on some machines. For reference, the machine used for testing hte local deployment was configured with an <a id="refmachine">Intel(R) Xeon(R) CPU E3-1505M v5 @ 2.80GHz-2.81GHz processor with 64GBytes of installed RAM</a>.
 
 Two changes were made to the Spark configuration in the '\python\transparency-engine\transparency-engine\Dockerfile' before deployment and these changes have been made to this repository.
 
