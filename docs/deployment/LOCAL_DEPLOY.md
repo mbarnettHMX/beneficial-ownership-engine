@@ -62,7 +62,7 @@ To run the pipeline, once in Docker interactive mode, execute the following comm
 ```PowerShell
 poetry run python transparency_engine/main.py --config samples/config/pipeline.json --steps samples/config/steps.json
 ```
-If you see the error "The currently activated Python version <some version of Python, e.g., 3.12.4> is not supported by the project (<3.10,>=3.8)", use the poetry "env use" command to set the version of Python:
+If you encounter the error "The currently activated Python version <some version of Python, e.g., 3.12.4> is not supported by the project (<3.10,>=3.8)", use the poetry `env use` command before the `poetry run` command to set the version of Python:
 ```PowerShell
 poetry env use C:\Users\<YourUsername>\AppData\Local\Programs\Python\Python38\python.exe
 ```
