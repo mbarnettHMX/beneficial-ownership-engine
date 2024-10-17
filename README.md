@@ -1,18 +1,18 @@
 # Beneficial Ownership Engine
 
-Beneficial Ownership Engine aims to detect and visualize the implicit connections between entities and activities to support situational awareness and targeted action. Applications include identifying risks due to adversarial activities (e.g., corruption and collusion) hidden within large datasets of corporate and government entity metadata and activity records.
+Beneficial Ownership Engine detects and visualizes explicit and implicit connections between entities and activities to support situational awareness and targeted action. Applications include identifying risks due to adversarial activities (e.g., corruption and collusion) hidden within large datasets of corporate and government entity metadata and activity records.
 
-Given a collection of streaming data sources describing the attributes and actions of real-world entities, the Beneficial Ownership Engine uses a range of graph modeling, joint graph embedding [[1-3]](#references), and other statistical techniques to detect and explain the networks of entities most closely related to each entity.
+Given a collection of streaming data sources describing the attributes and actions of real-world entities, the Beneficial Ownership Engine uses a range of network machine learning techniques including graph modeling, joint graph embedding [[1-3]](#references), and other statistical techniques to detect and explain the networks of entities including features (common activities over time, historical conections, similar contact information, etc.) that closely relate the entities.
 
-To prioritize the expert review of these entity networks, entities can be linked to "risk signals" that indicate the need for inspection. Risk signals may be signs of either opportunities ("green flags") or risks ("red flags") due to the relationships between entities. The more risk signals in an entity network, the higher the risk and the priority for review of that network of entities.
+To prioritize the expert review of the discovered entity networks, entities can be linked to "risk signals" that indicate the need for inspection. Risk signals may be signs of either opportunities ("green flags") or risks ("red flags") that arise fromthe relationships between entities. The more risk signals in an entity's network, the higher the risk and the priority for review of that entity's network.
 
 For each entity in the dataset, the Beneficial Ownership Engine generates a report illustrating the detected relationships and risk signals contributing to its overall risk. In typical use, these reports inform real-world actions targeted at either the entity or its broader network.
 
-Beneficial Ownership Engine consists of three components:
+The Beneficial Ownership Engine comprises three components:
 
-1. Processing Pipeline: Python package that manages processing of the seven (7) required input files using graph modeling techniques to detect networks of closely-related entities.
+1. Processing Pipeline: A Python package that manages processing of the seven (7) required input files using graph modeling techniques to detect networks of closely-related entities.
 2. Web Server & API: A web server and API for querying the results produced by the Beneficial Ownership Processing pipeline.
-3. Power BI and HTML Reports: A [Beneficial Ownership Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/tree/main/powerbi) is provided for reviewing Beneficial Ownership Engine results, and a React-based web server can be deployed to enable generation of entity narrative reports that can also be exported to PDF file format.
+3. Power BI and HTML Reports: A [Beneficial Ownership Power BI template](https://github.com/mbarnettHMX/beneficial-ownership-engine/tree/main/powerbi) for reviewing Beneficial Ownership Engine results, and a React-based web server to enable generation of entity narrative reports that can also be exported to PDF file format.
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ There are two deployment options for the Beneficial Ownership Engine:
 1. Azure Synapse deployment, and
 2. Local deployment.
 
-Efficient processing is important for the Beneficial Ownership Engine, especially for large datasets, thus the Azure Synapse deployment is recommended.
+Efficient processing is important for the Beneficial Ownership Engine, which is compute-intensive especially for large datasets. Thus, the Azure Synapse deployment option is recommended.
 
 For Azure Synapse deployment refer to the [Synapse Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/SYNAPSE_DEPLOY.md) document.
 
@@ -37,8 +37,4 @@ For local deployment on a laptop, desktop, or virtual machine, follow the instru
 
 ## Contributing
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
-
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+[HMX Corporation](https://hmx.ai) has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [ai@hmx.ai](mailto:ai@hmx.ai) with any questions or comments.
