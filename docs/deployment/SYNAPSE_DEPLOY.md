@@ -53,7 +53,7 @@ If Poetry has been successfully installed, you should see its version number pri
 
 ## Generate wheel file
 
-After installing python 3.8, pip, and Poetry, run the following commands from the PowerShell terminal in your VS Code.
+After installing python 3.8, pip, and Poetry, in Power Shell navigate to the folder containing Beneficial Ownership Engine code (the top level, e.g. "C:\Users\SmartCloudAI\Documents\GitHub\ACTS-Beneficial-Ownership-Engine") and type `code .` to start Visual Studio Code from that folder. Next, run the following commands from a Power Shell terminal in your VS Code.
 
 ``` powershell
     cd .\python\transparency-engine\
