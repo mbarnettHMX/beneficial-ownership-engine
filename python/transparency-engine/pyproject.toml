@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "transparency-engine"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = [
     "Darren Edge <darren.edge@microsoft.com>",
@@ -10,19 +10,20 @@ authors = [
     "Gaudy Blanco Meneses <gaudyb@microsoft.com>",
     "Monica Carvajal <nathan.evans@microsoft.com>",
     "Chris Trevino <chris.trevino@microsoft.com>",
+    "Michael W Barnett <mbarnett@hmx.ai>"
     ]
 license = "MIT"
 packages = [{include = "transparency_engine"}]
 
 
 [tool.poetry.dependencies]
-python = "<3.10,>=3.8"
+python = "<3.11,>=3.8"
 datasketch = "^1.5.8"
 faker = "^16.1.0"
-faiss-cpu = "^1.7.3"
+faiss-cpu = "^1.7.4"
 graspologic = "^2.0.1"
 kneed = "^0.8.2"
-pyspark = "3.2.2"
+pyspark = "3.3.0"
 numpy = "^1.22.0"
 redis = {extras = ["hiredis"], version = "^4.4.2"}
 dependency-injector = "^4.41.0"
