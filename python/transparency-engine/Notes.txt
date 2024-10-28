@@ -1,0 +1,19 @@
+
+docker build -t transparency-engine -f Dockerfile .
+
+docker run -v C:\Users\SmartCloudAI\Documents\GitHub\transparency-engine\python\transparency-engine -it transparency-engine
+
+poetry run python transparency_engine/main.py --config samples/config/pipeline.json --steps samples/config/steps.json
+
+
+
+C:\Users\SmartCloudAI\Documents\GitHub\transparency-engine\python\transparency-engine
+
+poetry env use C:\Users\SmartCloudAI\AppData\Local\Programs\Python\Python38\python.exe
+
+
+Error that occurs:
+
+INFO:transparency_engine.modules.graph.embed.use_graph:adjacency data count: 88737552
+Killed
+
