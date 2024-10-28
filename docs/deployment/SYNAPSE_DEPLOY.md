@@ -53,7 +53,7 @@ If Poetry has been successfully installed, you should see its version number pri
 
 ## Generate wheel file
 
-After installing python 3.8, pip, and Poetry, run the following commands from the PowerShell terminal in your VS Code.
+After installing python 3.8, pip, and Poetry, in Power Shell navigate to the folder containing Beneficial Ownership Engine code (the top level, e.g. "C:\Users\SmartCloudAI\Documents\GitHub\ACTS-Beneficial-Ownership-Engine") and type `code .` to start Visual Studio Code from that folder. Next, run the following commands from a Power Shell terminal in your VS Code.
 
 ``` powershell
     cd .\python\transparency-engine\
@@ -113,6 +113,26 @@ Next, run the following commands:
 ```
 
 Once these commands complete you will see a success message indicating that the resources are deployed. If you encounter errors while deploying, the Terraform commands above can be re-applied, and this may resolve the errors encountered.
+
+## Install the Required Beneficial Ownership Packages
+The Spark Pool deployed for the Beneficial Ownership Engine references Python module 'transparency_engine'. The deployment of Azure services created the required 'transparency_engine-0.1.0-py3-none-any.whl' file containing the required modules, and these must be added to the Packages configuration of the Spark Pool following these steps:
+
+>1. In Synapse Studio, select the 'Manage; icon in the left-hand panel, then select 'Apache Spark pools' item in the list. This will display the available Spark pools.
+>2. Mouse over the row with the name of your Spark pool and right-click the '...' and select 'Packages'. This will display the Packages dialog on the firht.
+>3. Under 'Workspace packages' click the + and fro mthe 'Select from workspace packages', select the 'transparency_engine-0.1.0-py3-none-any.whl' file, then select Apply.
+
+The change in configuration batch job may take several minutes, and you can monitor the progress of the batch job by selecting the Monitor icon on the left-hand side of Synapse Studio, then selecting 'Apache Spark applications'. Refresh the list to confirm that the 'Status' is 'Completed'.
+
+## Run the Notebook
+If the above depoyment and configuration is complete, you can run the Beneficial Ownership Engine following these steps:
+
+>1. In Synapse Studio, navigate to the Notebooks by clicking on the 'Develop' icon on the left-hand side, the select the Beneficial_Ownership_Engine notebook. This will display the notebook on in Synapse Studio.
+>2. Edit the code panel labelled "Manually Updae SubFolderpath for this Run" including the 'subfolderpath', 'datecountry' and 'storagename'. These correspond, respectively, to the subfolder in the 'curated' container of the Storage Account created in the Beneficial Ownership Engine deployment, a name that will be used as a folder name for the results, and the name of the Storage Account created in the Beneficial Ownership Engine deployment.
+>3. Upload the seven required input data files. Refer to [Input Data Requirements](./BeneficialOwnershipEngine-InputDataDescriptions.pptx) for information on how to prepare these input data files, or use the synthetic test data files input files provided in the `transparency-engine\samples\input_data` folder.
+>4. In the second panel under the Pipeline Configurations section of the Notebook, check file names (do not change the paths) of the input data files selected in the previous step. 
+>5. Publish the changed you by clicking Pubish all at the top of the Notebook, then select 'Run all'
+
+It may take several minutes for the Spark pools to be initialized and, as with any Python Notebook, you can check progress of execution and see any errors by scrolling down through the Notebook.
 
 ## Install the Azure Kubernetes Web App
 
