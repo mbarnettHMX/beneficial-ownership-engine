@@ -17,7 +17,7 @@ packages = [{include = "transparency_engine"}]
 
 
 [tool.poetry.dependencies]
-python = "<3.11,>=3.8"
+python = "<3.11,>=3.10"
 datasketch = "^1.5.8"
 faker = "^16.1.0"
 faiss-cpu = "^1.7.4"
