@@ -96,6 +96,10 @@ In the Ubuntu 22.04(WSL) terminal opened in the 'Connect to Ubuntu WSL with VS C
     az account set --subscription mysubscriptionID
 ```
 
+NOTES:
+>1. If the `az login` command does not open a browser for authentication, use the `az login --use-device-code` command, which provides a code and a URL that you can open in any browser on your host machine.
+>2. Depending on the version of the CLI installed, you may not need to enter the 'az account...' command. In later versions the subscriptions to which you have access are shown in a numbered list, and you simply enter the number for the desired subscription.
+
 ## Set Terraform variables
 
 In the file named terraform.tfvars in the 'synapse_deploy' folder, change the values of the following variables:
@@ -112,7 +116,7 @@ Next, run the following commands:
     terraform -chdir=synapse_deploy apply --auto-approve
 ```
 
-Once these commands complete you will see a success message indicating that the resources are deployed. If you encounter errors while deploying, the Terraform commands above can be re-applied, and this may resolve the errors encountered.
+The tarraform apply command will take several minutes to complete and you will see a success message ('Apply complete! Resources: 13 added, 0 changed, 0 destroyed.') indicating that the Azure resources are deployed. If you encounter errors while deploying, correct the error(s) then reenter the commands above. Terraform commands are idempotent; they can be applied multiple times without changing the result beyond the initial application.
 
 ## Install the Required Beneficial Ownership Packages
 
