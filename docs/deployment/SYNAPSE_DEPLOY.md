@@ -8,7 +8,7 @@ We will need:
 
 - [Windows Store Ubuntu 22.04 LTS](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW)
 - [Visual Studio Code](https://visualstudio.microsoft.com/downloads/)
-- [Python 3.8](https://www.python.org/downloads/release/python-380/)
+- [Python 3.8](https://www.python.org/downloads/release/python-380/) (Will need to upgrade to 3.10)
 
 ---
 
