@@ -120,7 +120,7 @@ The tarraform apply command will take several minutes to complete and you will s
 
 ## Install the Required Beneficial Ownership Packages
 
-The Spark Pool deployed for the Beneficial Ownership Engine references Python module 'transparency_engine'. The deployment of Azure services created the required 'transparency_engine-0.1.0-py3-none-any.whl' file containing the required modules, and these must be added to the Packages configuration of the Spark Pool following these steps:
+The Spark Pool deployed for the Beneficial Ownership Engine references Python module 'transparency_engine'. The deployment of Azure services created the required 'transparency_engine-0.1.0-py3-none-any.whl' file containing the required modules, and the terraform apply command should have added to the Packages configuration of the Spark Pool. If not, check that the terraform apply did not log errors related to the whl file. If the whl file is correct but was not added to the Packages configuration of the Spark Pool follow these steps to ensure that the Spark pool has the required transparency-engine modules:
 
 >1. In Synapse Studio, select the 'Manage; icon in the left-hand panel, then select 'Apache Spark pools' item in the list. This will display the available Spark pools.
 >2. Mouse over the row with the name of your Spark pool and right-click the '...' and select 'Packages'. This will display the Packages dialog on the right.
