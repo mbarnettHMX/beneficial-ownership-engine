@@ -49,7 +49,7 @@ The Poetry package, a tool for dependency management and packaging in Python, is
 poetry --version
 ```
 
-If Poetry has been successfully installed, you should see its version number printed in the terminal.
+If Poetry has been successfully installed, you should see its version number (Poetry version 1.8.4 is required) printed in the terminal.
 
 ## Generate wheel file
 
