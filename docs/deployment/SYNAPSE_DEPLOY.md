@@ -8,7 +8,7 @@ We will need:
 
 - [Windows Store Ubuntu 22.04 LTS](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW)
 - [Visual Studio Code](https://visualstudio.microsoft.com/downloads/)
-- [Python 3.8](https://www.python.org/downloads/release/python-380/) (Will need to upgrade to 3.10)
+- [Python 3.8](https://www.python.org/downloads/release/python-380/) (Will need to upgrade to [Python 3.10](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-us&gl=US) to use Azure Spark 3.3)
 
 ---
 
