@@ -100,6 +100,10 @@ NOTES:
 >1. If the `az login` command does not open a browser for authentication, use the `az login --use-device-code` command, which provides a code and a URL that you can open in any browser on your host machine.
 >2. Depending on the version of the CLI installed, you may not need to enter the 'az account...' command. In later versions the subscriptions to which you have access are shown in a numbered list, and you simply enter the number for the desired subscription.
 
+## Check the Poetry whl File
+
+If you made changes to the pyproject.toml file that is used by Poetry to create the whl file, use the `poetry lock` command to ensure all dependencies are valid. 
+
 ## Set Terraform variables
 
 In the file named terraform.tfvars in the 'synapse_deploy' folder, change the values of the following variables:
