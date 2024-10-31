@@ -118,7 +118,7 @@ resource "azurerm_synapse_spark_pool" "synapse_spark_pool" {
   compute_isolation_enabled           = false
   dynamic_executor_allocation_enabled = false
   session_level_packages_enabled      = true
-  spark_version                       = "3.2"
+  spark_version                       = "3.3"
  
   auto_scale {
     max_node_count = 20

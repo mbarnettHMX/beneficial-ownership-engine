@@ -126,7 +126,7 @@ The change in configuration batch job may take several minutes, and you can moni
 
 ## Run the Notebook
 
-If the above depoyment and configuration is complete, you can run the Beneficial Ownership Engine following these steps:
+If the above deployment and configuration is complete, you can run the Beneficial Ownership Engine following these steps:
 
 >1. In Synapse Studio, navigate to the Notebooks by clicking on the 'Develop' icon on the left-hand side, the select the Beneficial_Ownership_Engine notebook. This will display the notebook on in Synapse Studio.
 >2. Edit the code panel labelled "Manually Update SubFolderpath for this Run" including the 'subfolderpath', 'datecountry' and 'storagename'. These correspond, respectively, to the subfolder in the 'curated' container of the Storage Account created in the Beneficial Ownership Engine deployment, a name that will be used as a folder name for the results, and the name of the Storage Account created in the Beneficial Ownership Engine deployment.

@@ -1,2 +1,2 @@
-resource_group_name = "rgname"   
-location_for_resoruces = "location"  
+resource_group_name = "hmxairesourcegroup"   
+location_for_resoruces = "eastus"  

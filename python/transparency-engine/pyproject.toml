@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "transparency-engine"
-version = "0.2.0"
+version = "0.1.0"
 description = ""
 authors = [
     "Darren Edge <darren.edge@microsoft.com>",
@@ -18,10 +18,11 @@ packages = [{include = "transparency_engine"}]
 
 [tool.poetry.dependencies]
 python = "<3.11,>=3.10"
+pip = "^21.0"
 datasketch = "^1.5.8"
 faker = "^16.1.0"
 faiss-cpu = "^1.7.4"
-graspologic = "^2.0.1"
+graspologic = "^3.4.1"
 kneed = "^0.8.2"
 pyspark = "3.3.0"
 numpy = "^1.22.0"
@@ -61,7 +62,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.isort]
-py_version = 36
+py_version = 310
 profile = "black"
 force_single_line = false
 combine_as_imports = true
@@ -72,7 +73,7 @@ extend_skip = ["setup.py"]
 
 
 [tool.black]
-target-version = ['py36']
+target-version = ['py310']
 force-exclude = '''
 .*/setup\.py$
 '''
