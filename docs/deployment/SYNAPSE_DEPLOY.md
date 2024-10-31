@@ -53,7 +53,7 @@ If Poetry has been successfully installed, you should see its version number (Po
 
 ## Generate wheel file
 
-After installing python 3.8, pip, and Poetry, in Power Shell navigate to the folder containing Beneficial Ownership Engine code (the top level, e.g. "C:\Users\SmartCloudAI\Documents\GitHub\ACTS-Beneficial-Ownership-Engine") and type `code .` to start Visual Studio Code from that folder. Next, run the following commands from a Power Shell terminal in your VS Code.
+After installing python 3.8, pip, and Poetry, in Power Shell navigate to the folder containing Beneficial Ownership Engine code (the top level, e.g. "C:\Users\<username>\Documents\GitHub\ACTS-Beneficial-Ownership-Engine") and type `code .` to start Visual Studio Code from that folder. Next, run the following commands from a Power Shell terminal in your VS Code.
 
 ``` powershell
     cd .\python\transparency-engine\
@@ -96,6 +96,14 @@ In the Ubuntu 22.04(WSL) terminal opened in the 'Connect to Ubuntu WSL with VS C
     az account set --subscription mysubscriptionID
 ```
 
+NOTES:
+>1. If the `az login` command does not open a browser for authentication, use the `az login --use-device-code` command, which provides a code and a URL that you can open in any browser on your host machine.
+>2. Depending on the version of the CLI installed, you may not need to enter the 'az account...' command. In later versions the subscriptions to which you have access are shown in a numbered list, and you simply enter the number for the desired subscription.
+
+## Check the Poetry whl File
+
+If you made changes to the pyproject.toml file that is used by Poetry to create the whl file, use the `poetry lock` command to ensure all dependencies are valid. 
+
 ## Set Terraform variables
 
 In the file named terraform.tfvars in the 'synapse_deploy' folder, change the values of the following variables:
@@ -112,11 +120,11 @@ Next, run the following commands:
     terraform -chdir=synapse_deploy apply --auto-approve
 ```
 
-Once these commands complete you will see a success message indicating that the resources are deployed. If you encounter errors while deploying, the Terraform commands above can be re-applied, and this may resolve the errors encountered.
+The tarraform apply command will take several minutes to complete and you will see a success message ('Apply complete! Resources: 13 added, 0 changed, 0 destroyed.') indicating that the Azure resources are deployed. If you encounter errors while deploying, correct the error(s) then reenter the commands above. Terraform commands are idempotent; they can be applied multiple times without changing the result beyond the initial application.
 
 ## Install the Required Beneficial Ownership Packages
 
-The Spark Pool deployed for the Beneficial Ownership Engine references Python module 'transparency_engine'. The deployment of Azure services created the required 'transparency_engine-0.1.0-py3-none-any.whl' file containing the required modules, and these must be added to the Packages configuration of the Spark Pool following these steps:
+The Spark Pool deployed for the Beneficial Ownership Engine references Python module 'transparency_engine'. The deployment of Azure services created the required 'transparency_engine-0.1.0-py3-none-any.whl' file containing the required modules, and the terraform apply command should have added to the Packages configuration of the Spark Pool. If not, check that the terraform apply did not log errors related to the whl file. If the whl file is correct but was not added to the Packages configuration of the Spark Pool follow these steps to ensure that the Spark pool has the required transparency-engine modules:
 
 >1. In Synapse Studio, select the 'Manage; icon in the left-hand panel, then select 'Apache Spark pools' item in the list. This will display the available Spark pools.
 >2. Mouse over the row with the name of your Spark pool and right-click the '...' and select 'Packages'. This will display the Packages dialog on the right.
