@@ -8,7 +8,7 @@ We will need:
 
 - [Windows Store Ubuntu 22.04 LTS](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW)
 - [Visual Studio Code](https://visualstudio.microsoft.com/downloads/)
-- [Python 3.8](https://www.python.org/downloads/release/python-380/) (Will need to upgrade to [Python 3.10](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-us&gl=US) to use Azure Spark 3.3)
+- [Python 3.10](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-us&gl=US), which is required for use with Azure Spark 3.3.
 
 ---
 
@@ -25,7 +25,7 @@ The pip package manager is required to install the Poetry tool. To install pip i
 py get-pip.py
 ```
 
-If you want to upgrade your existing pip installation, you can do so by running the following command:
+Upgrade your existing pip installation by running the following command:
 
 ``` powershell
 python -m pip install --upgrade pip
@@ -53,7 +53,7 @@ If Poetry has been successfully installed, you should see its version number (Po
 
 ## Generate wheel file
 
-After installing python 3.8, pip, and Poetry, in Power Shell navigate to the folder containing Beneficial Ownership Engine code (the top level, e.g. "C:\Users\<username>\Documents\GitHub\ACTS-Beneficial-Ownership-Engine") and type `code .` to start Visual Studio Code from that folder. Next, run the following commands from a Power Shell terminal in your VS Code.
+After installing python 3.8, pip, and Poetry, in Power Shell navigate to the folder containing the Beneficial Ownership Engine code (the top level, e.g. "C:\Users\<username>\Documents\GitHub\ACTS-Beneficial-Ownership-Engine") and type `code .` to start Visual Studio Code from that folder. Next, run the following commands from a Power Shell terminal in your VS Code.
 
 ``` powershell
     cd .\python\transparency-engine\
