@@ -1,0 +1,14 @@
+FlagID,Category,Name,Description,IsSupportingFlag,FlagWeight
+F1,Award Risks,Accessed System with Army IP,Company accessed the auction system with a Brazilian Army IP address,False,3
+F2,Award Risks,Accessed System with Air Force IP,Company accessed the auction system with an Air Force IP address,False,5
+F3,Award Risks,Accessed System from the Same IP Address within 48 Hours of Public Official,Company accessed the auction system from the same IP address within 48 hours of a public official or auctioneer from a buyer or agency where the company won at least one item,False,5
+F7,Collusion,Related Partners,Competing companies in the same item have partners who are related,False,3
+F8,Collusion,Same IP Address Access,Competing companies in the same item accessed the auction system using the same IP address,False,5
+F9,Collusion,Same Email Address,Competing companies in the same item have the same email address,False,5
+F10,Collusion,Same Phone Number,Competing companies in the same item have the same phone number,False,5
+F12,Collusion,Common Partners,Competing companies in the same item have common partners,False,4
+F13,Humble Partner or Strawman,Cadastro Unico Benefits,Partner or owner of a company receives Cadastro Unico benefits,False,3
+F14,Political Exposure,Politically exposed partner,Partner of a company is a politician,False,3
+F17,Suspicious Company Characteristics,Disproportionate Contract Value,The contract value awarded is disproportionate to the company's capital,False,4
+F19,Suspicious Company Characteristics,Young Supplier,Supplier is awarded a contract within 60 days after incorporation,False,3
+F21,Suspicious Company Characteristics,Low Competitiveness Index,The company's competitiveness index is low within the same material or service group or within the same buyer,False,2

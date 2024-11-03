@@ -1,0 +1,10 @@
+FlagID,Category,Name,Description,IsSupportingFlag,FlagWeight
+F1,judgements,fined,The company was fined,false,1.0
+F2,judgements,sanctioned,The company was sanctioned,false,5.0
+F3,judgements,litigated,The company was litigated,false,1.0
+F4,ownership,front person,A company owner is a front person,false,2.0
+F5,ownership,convicted criminal,A company owner is a convicted criminal,false,5.0
+F6,ownership,politically-exposed person,A company owner is a politically-exposed person,true,2.0
+F7,control,market division,The company is involved in market division,false,3.0
+F8,control,bid rigging,The company is involved in bid rigging,false,3.0
+F9,control,price fixing,The company is involved in price fixing,false,3.0
