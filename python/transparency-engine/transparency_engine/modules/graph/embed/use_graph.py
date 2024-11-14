@@ -107,7 +107,7 @@ class UnfoldedGraph(BaseGraph[UnfoldedGraphNode]):
         **kwargs,
     ) -> "UnfoldedGraph":
         """
-        Create an unfoled graph object given graph edge data.
+        Create an unfolded graph object given graph edge data.
 
         Params:
         -------------

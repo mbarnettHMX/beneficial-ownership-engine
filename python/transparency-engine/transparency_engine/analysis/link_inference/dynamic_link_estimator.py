@@ -89,7 +89,7 @@ class USEDynamicLinkEstimator(BaseLinkEstimator[USEDynamicLinkConfig]):
         Params:
         -------------
         configs: USEDynamicLinkConfig
-            Configuations of the estimator
+            Configurations of the estimator
         relationship_family: str
             Family of the static relationship (e.g. bid activity)
         entity_partition: str, default = 'EntityID'
@@ -132,7 +132,7 @@ class USEDynamicLinkEstimator(BaseLinkEstimator[USEDynamicLinkConfig]):
                 with schema [source_col, target_col, source_type_col, target_type_col, time_col, weight_col]
 
         Returns:
-            Spark DataFrame Dataframe containing the predicted links with format [Source, Target, SourceType, TargetType, Weight, Relationship]
+            Spark DataFrame containing the predicted links with format [Source, Target, SourceType, TargetType, Weight, Relationship]
         """
         if isinstance(input_data, List):
             raise ValueError(
