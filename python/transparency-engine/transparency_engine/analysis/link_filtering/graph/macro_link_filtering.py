@@ -34,7 +34,7 @@ class MacroLinkFilteringConfig:
     """
 
     join_token: str = "::"
-    max_path_length: int = 5
+    max_path_length: int = 2
     max_fuzzy_chain_length: int = 1
     max_dynamic_chain_length: int = 1
     min_direct_links: int = (
