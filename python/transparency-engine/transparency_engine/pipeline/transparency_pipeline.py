@@ -298,7 +298,7 @@ class TransparencyPipeline:
         macro_filtered_links_df = MacroLinkFilter(
             config=macro_config, multipartite_tables=dataframes_list
         ).filter(macro_links_df)
-        macro_filtered_links_df.show()
+        macro_filtered_links_df.show() #MB commented this code
         self.data_handler.write_data(
             macro_filtered_links_df, f"{input_name}_filtered_links"
         )

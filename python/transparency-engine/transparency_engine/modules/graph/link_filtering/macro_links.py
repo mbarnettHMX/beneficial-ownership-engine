@@ -573,7 +573,7 @@ def add_missing_links(
         A dataframe of predicted links with missing links added.
     """
     missing_links = get_missing_links(predicted_links).cache()
-    missing_links_count = missing_links.count()
+    missing_links_count = missing_links.count() # This is the line that throws an error 
     logger.info(f"missing link count: {missing_links_count}")
     if missing_links_count > 0:
         valid_links = get_valid_links(

@@ -120,6 +120,7 @@ class MacroLinkFilter(BaseLinkFilter):
             min_direct_links=self.config.min_direct_links,
         )
 
+#MB commented this code as a dataframe count() method in add_missing_links is throwing an error
         expanded_links = macro_links.add_missing_links(
             predicted_links=filtered_links,
             graph=graph,
@@ -135,4 +136,6 @@ class MacroLinkFilter(BaseLinkFilter):
             max_dynamic_chain_length=self.config.max_dynamic_chain_length,
             min_direct_links=self.config.min_direct_links,
         )
+        #expanded_links = filtered_links
+        
         return expanded_links

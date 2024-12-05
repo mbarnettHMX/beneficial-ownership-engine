@@ -1,0 +1,475 @@
+C:\Users\SmartCloudAI\Documents\GitHub\beneficial-ownership-engine\python\transparency-engine\samples\input_data\Actual\FewerEntities
+
+---
+#Use this Python to store the results of the Power Queries (this one for activity.csv to drop a column)
+import pandas as pd
+# Exclude the TimePeriodSource column only for activity.csv
+# dataset = dataset.drop(columns=['TimePeriodSource'])
+# Save the 'dataset' DataFrame to CSV
+dataset.to_csv('C:\\Users\\SmartCloudAI\\Documents\\GitHub\\beneficial-ownership-engine\\python\\transparency-engine\\samples\\input_data\\Actual\\FewerEntities\\output.csv', index=False)
+---
+pipeline_config = {
+    "name": "Transparency Engine Pipeline",
+    "description": "Transparency Engine using open or customer data",
+    "storage": {
+        "type": "hive",
+        "root": f"BeneficialOwnership{datecountry}"
+    },
+    "steps": [
+        "prep",
+        "individual_link_prediction",
+        "individual_link_filtering",
+        "macro_link_prediction",
+        "macro_link_filtering",
+        "scoring",
+        "report"
+    ]
+}
+
+---starting configuration
+%%configure -f
+{
+    "conf":
+    {
+        "spark.sql.shuffle.partitions": 64,
+        "spark.sql.broadcastTimeout": 14400,
+        "spark.port.maxRetries": 100,
+        "spark.executor.allowSparkContext": "true",
+        "spark.executor.memory": "16g",
+        "spark.executor.memoryOverhead": "6g",
+        "spark.driver.memory": "16g",
+        "livy.server.session.timeout": "10h"
+    }
+}
+---
+
+%%configure -f
+{
+    "conf":
+    {
+        "spark.sql.shuffle.partitions": 64,
+        "spark.sql.broadcastTimeout": 14400,
+        "spark.port.maxRetries": 100,
+        "spark.driver.memory": "64g",
+        "spark.executor.memory": "64g",
+        "spark.executor.cores": "8",
+        "spark.executor.allowSparkContext": "true",
+        "spark.dynamicAllocation.enabled": "true"
+    }
+}
+
+---XXL ending configuration
+%%configure -f
+{
+    "conf":
+    {
+        "spark.sql.shuffle.partitions": 64,
+        "spark.sql.broadcastTimeout": 14400,
+        "spark.port.maxRetries": 100,
+        "spark.shuffle.memoryFraction": 0.3,
+        "spark.memory.fraction": 0.6,
+        "spark.shuffle.io.maxRetries": 6,
+        "spark.shuffle.io.retryWait": "30s",
+        "spark.driver.memory": "64g",
+        "spark.executor.memory": "64g",
+        "spark.executor.cores": "8",
+        "spark.executor.allowSparkContext": "true",
+        "spark.dynamicAllocation.enabled": "true",
+        "spark.kryoserializer.buffer.max": "2048m"
+    }
+}
+---
+
+docker run -v C:\Users\SmartCloudAI\Documents\GitHub\beneficial-ownership-engine\python\transparency-engine -it transparency-engine
+
+----
+{
+    "name": "A pipeline",
+    "description": "A pipeline",
+    "storage": {
+        "type": "parquet",
+        "root": "output/demo/"
+    },
+    "steps": [
+        "prep",
+        "individual_link_prediction",
+        "individual_link_filtering",
+        "macro_link_prediction",
+        "macro_link_filtering",
+        "scoring",
+        "report"
+    ]
+}
+
+---
+Xentity_activity_report
+Xentity_attributes_report
+Xentity_graph_report
+entityReviewFlag
+entityreviewflag_metadata
+Xnetwork_scoring
+Xentity_temporal_activity_report
+Xentity_related_activity_report
+Xentity_related_activity_overall_report
+Xreport_url
+
+----
++--------------------+--------------------+------------------+-----------+
+|              Source|              Target|        Similarity|AttributeID|
++--------------------+--------------------+------------------+-----------+
+|NAJLA CARONE GUED...|NAJLA CARONE GUED...|0.8108108108108109|    address|
+|COLOMBO NÚMERO: 1...|COLOMBO NÚMERO: 1...|0.8297872340425532|    address|
+|GOVERNADOR MIGUEL...|GOVERNADOR MIGUEL...|0.9797979797979798|    address|
+|CONSOLACAO QUADRA...|CONSOLACAO QUADRA...|0.8974358974358975|    address|
+|NAJLA CARONE GUED...|NAJLA CARONE GUED...|0.8611111111111112|    address|
++--------------------+--------------------+------------------+-----------+
+only showing top 5 rows
+
++--------------+---------+------+
+|          Node|Partition|NodeId|
++--------------+---------+------+
+|10013974000163| EntityID|     0|
+|10014760000101| EntityID|     1|
+|10015379000167| EntityID|     2|
+|10015889000134| EntityID|     3|
+|10138105000165| EntityID|     4|
+|10140741000121| EntityID|     5|
+|10141389000149| EntityID|     6|
+|10141734000144| EntityID|     7|
+|10143720000160| EntityID|     8|
+|10143968000120| EntityID|     9|
+|10144187000150| EntityID|    10|
+|10144274000108| EntityID|    11|
+|10157627000104| EntityID|    12|
+|10158356000101| EntityID|    13|
+|10158805000111| EntityID|    14|
+|10161701000166| EntityID|    15|
+|10171846000148| EntityID|    16|
+|10172264000186| EntityID|    17|
+|10174094000179| EntityID|    18|
+|10174345000115| EntityID|    19|
++--------------+---------+------+
+only showing top 20 rows
+
++------------+--------------+----------+--------------+----------+------+--------+--------+-----------------+--------------+--------------+
+|Relationship|        Target|TargetType|        Source|SourceType|Weight|SourceId|TargetId|UnfoldAttributeId|UnfoldSourceId|UnfoldTargetId|
++------------+--------------+----------+--------------+----------+------+--------+--------+-----------------+--------------+--------------+
+|     address|18367537000150|  EntityID|18367537000150|  EntityID|   1.0|    4909|    4909|                0|          4909|          4909|
+|     address|47078180000198|  EntityID|47078180000198|  EntityID|   1.0|   18111|   18111|                0|         18111|         18111|
+|     address|18125445000163|  EntityID|18125445000163|  EntityID|   1.0|    4778|    4778|                0|          4778|          4778|
+|     address|49461961000192|  EntityID|49461961000192|  EntityID|   1.0|   19095|   19095|                0|         19095|         19095|
+|     address|39946634000177|  EntityID|39946634000177|  EntityID|   1.0|   15079|   15079|                0|         15079|         15079|
+|     address|46805411000155|  EntityID|46805411000155|  EntityID|   1.0|   17986|   17986|                0|         17986|         17986|
+|     address|33431712000114|  EntityID|33431712000114|  EntityID|   1.0|   12276|   12276|                0|         12276|         12276|
+|     address|20511832000180|  EntityID|20511832000180|  EntityID|   1.0|    5959|    5959|                0|          5959|          5959|
+|     address|36029108000154|  EntityID|36029108000154|  EntityID|   1.0|   13568|   13568|                0|         13568|         13568|
+|     address|47911393000159|  EntityID|47911393000159|  EntityID|   1.0|   18448|   18448|                0|         18448|         18448|
++------------+--------------+----------+--------------+----------+------+--------+--------+-----------------+--------------+--------------+
+only showing top 10 rows
+
++--------------+---------+------+
+|          Node|Partition|NodeId|
++--------------+---------+------+
+|10013974000163| EntityID|     0|
+|10014760000101| EntityID|     1|
+|10015379000167| EntityID|     2|
+|10015889000134| EntityID|     3|
+|10138105000165| EntityID|     4|
+|10140741000121| EntityID|     5|
+|10141389000149| EntityID|     6|
+|10141734000144| EntityID|     7|
+|10143720000160| EntityID|     8|
+|10143968000120| EntityID|     9|
+|10144187000150| EntityID|    10|
+|10144274000108| EntityID|    11|
+|10157627000104| EntityID|    12|
+|10158356000101| EntityID|    13|
+|10158805000111| EntityID|    14|
+|10161701000166| EntityID|    15|
+|10171846000148| EntityID|    16|
+|10172264000186| EntityID|    17|
+|10174094000179| EntityID|    18|
+|10174345000115| EntityID|    19|
++--------------+---------+------+
+only showing top 20 rows
+
++----------+------------+----------+--------------+----------+------+--------+--------+-----------------+--------------+--------------+
+|TimePeriod|      Target|TargetType|        Source|SourceType|Weight|SourceId|TargetId|UnfoldAttributeId|UnfoldSourceId|UnfoldTargetId|
++----------+------------+----------+--------------+----------+------+--------+--------+-----------------+--------------+--------------+
+|   2023-02|BUYER:114605|     buyer|23767832000133|  EntityID|   1.0|    7619|   19489|                1|        681155|        693025|
+|   2023-07|BUYER:114605|     buyer|43891754000191|  EntityID|   1.0|   16968|   19489|                6|       4058184|       4060705|
+|   2023-09|BUYER:114605|     buyer|49551436000168|  EntityID|   1.0|   19289|   19489|                8|       5407577|       5407777|
+|   2023-02|BUYER:114605|     buyer|36616851000100|  EntityID|   1.0|   13909|   19489|                1|        687445|        693025|
+|   2023-04|BUYER:120023|     buyer|16475154000250|  EntityID|   1.0|    3962|   19521|                3|       2024570|       2040129|
+|   2023-08|BUYER:120023|     buyer|16475154000250|  EntityID|   1.0|    3962|   19521|                7|       4718714|       4734273|
+|   2023-12|BUYER:120023|     buyer|16475154000250|  EntityID|   1.0|    3962|   19521|               11|       7412858|       7428417|
+|   2023-06|BUYER:120023|     buyer|17623276000129|  EntityID|   1.0|    4571|   19521|                5|       3372251|       3387201|
+|   2023-11|BUYER:120023|     buyer|18202203000126|  EntityID|   1.0|    4847|   19521|               10|       6740207|       6754881|
+|   2024-01|BUYER:120023|     buyer|19933130000105|  EntityID|   1.0|    5733|   19521|               12|       8088165|       8101953|
++----------+------------+----------+--------------+----------+------+--------+--------+-----------------+--------------+--------------+
+only showing top 10 rows
+
++--------------+--------------+------+----------+----------+-------------+
+|        Source|        Target|Weight|SourceType|TargetType| Relationship|
++--------------+--------------+------+----------+----------+-------------+
+|10287591000183|25632316000127|   1.0|  EntityID|  EntityID|sync_activity|
+|10329078000108|41035866000115|   1.0|  EntityID|  EntityID|sync_activity|
+|10329078000108|13611336000132|   1.0|  EntityID|  EntityID|sync_activity|
+|10403633000102|12507138000160|   1.0|  EntityID|  EntityID|sync_activity|
+|10723880000188|17008009000141|   1.0|  EntityID|  EntityID|sync_activity|
++--------------+--------------+------+----------+----------+-------------+
+only showing top 5 rows
+
++--------------+--------------+------+----------+----------+--------------+
+|        Source|        Target|Weight|SourceType|TargetType|  Relationship|
++--------------+--------------+------+----------+----------+--------------+
+|12785572000102|28066517000100|   1.0|  EntityID|  EntityID|async_activity|
+|13027001000171|16552800000155|   1.0|  EntityID|  EntityID|async_activity|
+|13099465000193|42288658000190|   1.0|  EntityID|  EntityID|async_activity|
+|13292261000174|24519083000198|   1.0|  EntityID|  EntityID|async_activity|
+|13331928000109|15401061000138|   1.0|  EntityID|  EntityID|async_activity|
++--------------+--------------+------+----------+----------+--------------+
+only showing top 5 rows
+
++--------------+--------------+-------------+------+----------+----------+
+|        Source|        Target| Relationship|Weight|SourceType|TargetType|
++--------------+--------------+-------------+------+----------+----------+
+|10303297000118|10688308000125|sync_activity|     1|  EntityID|  EntityID|
+|10309197000107|28341891000169|sync_activity|     1|  EntityID|  EntityID|
+|10403238000111|36602953000177|sync_activity|     1|  EntityID|  EntityID|
+|10403633000102|21473421000100|sync_activity|     1|  EntityID|  EntityID|
+|10447355000187|31957525000143|sync_activity|     1|  EntityID|  EntityID|
+|10470477000194|47333884000160|sync_activity|     1|  EntityID|  EntityID|
+|10485679000100|15394238000116|sync_activity|     1|  EntityID|  EntityID|
+|10528665000126|29919125000100|sync_activity|     1|  EntityID|  EntityID|
+|10586940000168|21681325000157|sync_activity|     1|  EntityID|  EntityID|
+|10600312000190|25641788000146|sync_activity|     1|  EntityID|  EntityID|
+|10614801000109|12646630000117|sync_activity|     1|  EntityID|  EntityID|
+|10663077000103|25406288000120|sync_activity|     1|  EntityID|  EntityID|
+|10765379000184|11439914000170|sync_activity|     1|  EntityID|  EntityID|
+|10769662000184|12857736000160|sync_activity|     1|  EntityID|  EntityID|
+|10795306000135|31965529000173|sync_activity|     1|  EntityID|  EntityID|
+|10839887000160|28738385000108|sync_activity|     1|  EntityID|  EntityID|
+|10842396000178|22604896000150|sync_activity|     1|  EntityID|  EntityID|
+|10844736000108|10891830000100|sync_activity|     1|  EntityID|  EntityID|
+|10844736000108|32958432000104|sync_activity|     1|  EntityID|  EntityID|
+|10846755000165|22948316000142|sync_activity|     1|  EntityID|  EntityID|
++--------------+--------------+-------------+------+----------+----------+
+only showing top 20 rows
+
++--------------+---------+------+
+|          Node|Partition|NodeId|
++--------------+---------+------+
+|10013974000163| EntityID|     0|
+|10014760000101| EntityID|     1|
+|10015379000167| EntityID|     2|
+|10015889000134| EntityID|     3|
+|10138105000165| EntityID|     4|
+|10140741000121| EntityID|     5|
+|10141389000149| EntityID|     6|
+|10141734000144| EntityID|     7|
+|10143720000160| EntityID|     8|
+|10143968000120| EntityID|     9|
+|10144187000150| EntityID|    10|
+|10144274000108| EntityID|    11|
+|10157627000104| EntityID|    12|
+|10158356000101| EntityID|    13|
+|10158805000111| EntityID|    14|
+|10161701000166| EntityID|    15|
+|10171846000148| EntityID|    16|
+|10172264000186| EntityID|    17|
+|10174094000179| EntityID|    18|
+|10174345000115| EntityID|    19|
++--------------+---------+------+
+only showing top 20 rows
+
++------------+--------------+----------+--------------+----------+------------------+--------+--------+-----------------+--------------+--------------+
+|Relationship|        Target|TargetType|        Source|SourceType|            Weight|SourceId|TargetId|UnfoldAttributeId|UnfoldSourceId|UnfoldTargetId|
++------------+--------------+----------+--------------+----------+------------------+--------+--------+-----------------+--------------+--------------+
+|     contact|10791708000161|  EntityID|10141734000144|  EntityID|0.9999949932098389|       7|     668|                0|             7|           668|
+|     contact|11969564000153|  EntityID|10157627000104|  EntityID|0.9999545812606812|      12|    1669|                0|            12|          1669|
+|     contact|22183441000109|  EntityID|10161701000166|  EntityID|0.9999987483024597|      15|    6792|                0|            15|          6792|
+|     contact|27652983000105|  EntityID|10176887000127|  EntityID|0.9999755620956421|      20|    9415|                0|            20|          9415|
+|     contact|31000709000110|  EntityID|10188392000118|  EntityID|0.9999454021453857|      24|   11110|                0|            24|         11110|
+|     contact|45842391000120|  EntityID|10201396000199|  EntityID|0.9997242093086243|      30|   17691|                0|            30|         17691|
+|     contact|24618587000165|  EntityID|10201909000161|  EntityID|0.9999039769172668|      33|    8046|                0|            33|          8046|
+|     contact|31096789000150|  EntityID|10221978000137|  EntityID|0.9998798966407776|      49|   11166|                0|            49|         11166|
+|     contact|45667808000165|  EntityID|10221978000137|  EntityID|0.9984229803085327|      49|   17606|                0|            49|         17606|
+|     contact|32493837000106|  EntityID|10256215000121|  EntityID|0.9995313882827759|      88|   11849|                0|            88|         11849|
++------------+--------------+----------+--------------+----------+------------------+--------+--------+-----------------+--------------+--------------+
+only showing top 10 rows
+
+WARNING clustering 3 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 3 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 3 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+/home/trusted-service-user/cluster-env/clonedenv/lib/python3.10/inspect.py:469: FutureWarning: pandas.Float64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
+  value = getattr(object, key)
+/home/trusted-service-user/cluster-env/clonedenv/lib/python3.10/inspect.py:469: FutureWarning: pandas.Int64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
+  value = getattr(object, key)
+/home/trusted-service-user/cluster-env/clonedenv/lib/python3.10/inspect.py:469: FutureWarning: pandas.UInt64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
+  value = getattr(object, key)
+WARNING clustering 9 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 5 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 5 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 5 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 4 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 4 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 4 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 4 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 3 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 20 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 12 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 12 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 11 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 9 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 8 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 7 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 7 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+WARNING clustering 2 points to 1 centroids: please provide at least 39 training points
+---
+KeyboardInterrupt while sending command.
+Traceback (most recent call last):
+  File "/home/trusted-service-user/cluster-env/clonedenv/lib/python3.10/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/trusted-service-user/cluster-env/clonedenv/lib/python3.10/site-packages/py4j/java_gateway.py", line 1217, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/home/trusted-service-user/cluster-env/clonedenv/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+KeyboardInterrupt
+---------------------------------------------------------------------------
+KeyboardInterrupt                         Traceback (most recent call last)
+Cell In [15], line 2
+      1 steps = PipelineSteps.from_string_list(pipeline_config.get("steps", []))
+----> 2 pipeline.run(steps=steps)
+
+File ~/cluster-env/clonedenv/lib/python3.10/site-packages/transparency_engine/pipeline/transparency_pipeline.py:98, in TransparencyPipeline.run(self, steps)
+     96     self.macro_link_prediction()
+     97 elif step == PipelineSteps.MACRO_LINK_FILTERING:
+---> 98     self.macro_link_filtering()
+     99 elif step == PipelineSteps.SCORING:
+    100     self.scoring()
+
+File ~/cluster-env/clonedenv/lib/python3.10/site-packages/transparency_engine/pipeline/transparency_pipeline.py:300, in TransparencyPipeline.macro_link_filtering(self)
+    296 macro_config = MacroLinkFilteringConfig(**config_dict)
+    297 logger.info(macro_config)
+    298 macro_filtered_links_df = MacroLinkFilter(
+    299     config=macro_config, multipartite_tables=dataframes_list
+--> 300 ).filter(macro_links_df)
+    301 macro_filtered_links_df.show()
+    302 self.data_handler.write_data(
+    303     macro_filtered_links_df, f"{input_name}_filtered_links"
+    304 )
+
+File ~/cluster-env/clonedenv/lib/python3.10/site-packages/transparency_engine/analysis/link_filtering/graph/macro_link_filtering.py:123, in MacroLinkFilter.filter(self, input_data)
+     99 graph, edge_data = macro_links.generate_nx_graph(
+    100     self.multipartite_tables,
+    101     self.source_col,
+   (...)
+    105     join_token=self.config.join_token,
+    106 )
+    108 filtered_links = macro_links.get_valid_links(
+    109     predicted_links=input_data,
+    110     graph=graph,
+   (...)
+    120     min_direct_links=self.config.min_direct_links,
+    121 )
+--> 123 expanded_links = macro_links.add_missing_links(
+    124     predicted_links=filtered_links,
+    125     graph=graph,
+    126     edge_data=edge_data,
+    127     entity_col=self.entity_col,
+    128     related_entities=self.related_col,
+    129     source_entity=self.source_col,
+    130     target_entity=self.target_col,
+    131     join_token=self.config.join_token,
+    132     noisy_relationships=self.config.noisy_relationships,
+    133     max_path_length=self.config.max_path_length,
+    134     max_fuzzy_chain_length=self.config.max_fuzzy_chain_length,
+    135     max_dynamic_chain_length=self.config.max_dynamic_chain_length,
+    136     min_direct_links=self.config.min_direct_links,
+    137 )
+    138 return expanded_links
+
+File ~/cluster-env/clonedenv/lib/python3.10/site-packages/transparency_engine/modules/graph/link_filtering/macro_links.py:576, in add_missing_links(predicted_links, graph, edge_data, source_entity, target_entity, related_entities, entity_col, join_token, noisy_relationships, max_path_length, max_fuzzy_chain_length, max_dynamic_chain_length, min_direct_links)
+    553 """
+    554 Add missing links to the predicted links.
+    555 
+   (...)
+    573     A dataframe of predicted links with missing links added.
+    574 """
+    575 missing_links = get_missing_links(predicted_links).cache()
+--> 576 missing_links_count = missing_links.count()
+    577 logger.info(f"missing link count: {missing_links_count}")
+    578 if missing_links_count > 0:
+
+File /opt/spark/python/lib/pyspark.zip/pyspark/sql/dataframe.py:804, in DataFrame.count(self)
+    794 def count(self) -> int:
+    795     """Returns the number of rows in this :class:`DataFrame`.
+    796 
+    797     .. versionadded:: 1.3.0
+   (...)
+    802     2
+    803     """
+--> 804     return int(self._jdf.count())
+
+File ~/cluster-env/clonedenv/lib/python3.10/site-packages/py4j/java_gateway.py:1320, in JavaMember.__call__(self, *args)
+   1313 args_command, temp_args = self._build_args(*args)
+   1315 command = proto.CALL_COMMAND_NAME +\
+   1316     self.command_header +\
+   1317     args_command +\
+   1318     proto.END_COMMAND_PART
+-> 1320 answer = self.gateway_client.send_command(command)
+   1321 return_value = get_return_value(
+   1322     answer, self.gateway_client, self.target_id, self.name)
+   1324 for temp_arg in temp_args:
+
+File ~/cluster-env/clonedenv/lib/python3.10/site-packages/py4j/java_gateway.py:1038, in GatewayClient.send_command(self, command, retry, binary)
+   1036 connection = self._get_connection()
+   1037 try:
+-> 1038     response = connection.send_command(command)
+   1039     if binary:
+   1040         return response, self._create_connection_guard(connection)
+
+File ~/cluster-env/clonedenv/lib/python3.10/site-packages/py4j/java_gateway.py:1217, in GatewayConnection.send_command(self, command)
+   1213     raise Py4JNetworkError(
+   1214         "Error while sending", e, proto.ERROR_ON_SEND)
+   1216 try:
+-> 1217     answer = smart_decode(self.stream.readline()[:-1])
+   1218     logger.debug("Answer received: {0}".format(answer))
+   1219     if answer.startswith(proto.RETURN_MESSAGE):
+
+File ~/cluster-env/clonedenv/lib/python3.10/socket.py:705, in SocketIO.readinto(self, b)
+    703 while True:
+    704     try:
+--> 705         return self._sock.recv_into(b)
+    706     except timeout:
+    707         self._timeout_occurred = True
+
+KeyboardInterrupt: 
+
+----To Update the whl file:
+(1) make any desired code changes
+(2) In Power Shell (following the instructions on the mbarnett\beneficial-ownership-engine GitHub site:
+     - from the C:\Users\SmartCloudAI\Documents\GitHub\beneficial-ownership-engine> folder:
+	cd .\python\transparency-engine
+        poetry build
+(3) The new whl file is stored in C:\Users\SmartCloudAI\Documents\GitHub\beneficial-ownership-engine\python\transparency-engine\dist (check the timestamp!)
+(4) In Azure Synapse, Manage->Apache Spark pools, delete the current whl file from the pool's package manager; it takes a minute or two to delete the whl file from the pool
+(5) In Azure Synapse, Manage->Workspace packages, delete the current whl file (this will take a a minute or two) then upload the new whl file from the 'dist' folder (check the timestamp!); wait until the file is upoaded
+(6) In Azure Synapse, Manage->Apache Spark pools, select the '...' next to the desired Spark pool and select Packages, then at the bottom of the dialog click '+ Select from workspace packages', select the file you just uploaded (check the timestamp!) and click Select; applying the settings takes several minutes (>10 min)
+(7) In Azure Synapse, Develop, the pool with the updated whl file can now be specified in the Python notebook and you can Run All
