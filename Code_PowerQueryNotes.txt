@@ -473,3 +473,4 @@ KeyboardInterrupt:
 (5) In Azure Synapse, Manage->Workspace packages, delete the current whl file (this will take a a minute or two) then upload the new whl file from the 'dist' folder (check the timestamp!); wait until the file is upoaded
 (6) In Azure Synapse, Manage->Apache Spark pools, select the '...' next to the desired Spark pool and select Packages, then at the bottom of the dialog click '+ Select from workspace packages', select the file you just uploaded (check the timestamp!) and click Select; applying the settings takes several minutes (>10 min)
 (7) In Azure Synapse, Develop, the pool with the updated whl file can now be specified in the Python notebook and you can Run All
+
