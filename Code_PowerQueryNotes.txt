@@ -463,8 +463,9 @@ File ~/cluster-env/clonedenv/lib/python3.10/socket.py:705, in SocketIO.readinto(
 KeyboardInterrupt: 
 
 ----To Update the whl file:
-(1) make any desired code changes
-(2) In Power Shell (following the instructions on the mbarnett\beneficial-ownership-engine GitHub site:
+(1) make any desired code changes, and add any required Python library modules to pyproject.toml
+	- libraries are added to the [tool.poetry.dependencies] section
+(2) In Power Shell (following the instructions on at: https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/SYNAPSE_DEPLOY.md#generate-wheel-file GitHub site:
      - from the C:\Users\SmartCloudAI\Documents\GitHub\beneficial-ownership-engine> folder:
 	cd .\python\transparency-engine
         poetry build
