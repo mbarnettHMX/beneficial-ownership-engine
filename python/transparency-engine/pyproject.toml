@@ -31,6 +31,7 @@ dependency-injector = "^4.41.0"
 pydantic = "^1.10.4"
 networkx = "^3.0"
 fuzzywuzzy = {extras = ["speedup"], version = "^0.18.0"}
+hmx_library = "^1.1.0"
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "^0.18.0"
