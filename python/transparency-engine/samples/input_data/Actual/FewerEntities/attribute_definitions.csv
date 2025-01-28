@@ -1,0 +1,12 @@
+AttributeID,Name,Description
+company_name,name,company name
+phone,phone number,company phone number
+alternate_phone,alternate phone number,company alternate phone number
+email,email,company email
+address,address,company address
+beneficial_owner,beneficial owner,beneficial owner of the company
+tender,tender,id of tender in public procurement
+item,item,id of line item in public procurement
+buyer,buyer,id of buyer in public procurement
+company_opening_date,company opening date,date when the company was established
+company_share_capital_value,share capital value,total value of the company's share capital

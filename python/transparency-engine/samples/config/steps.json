@@ -4,7 +4,7 @@
             {
                 "name": "activity",
                 "type": "dynamic",
-                "path": "./samples/input_data/activity.csv",
+                "path": "./samples/input_data/Actual/FewerEntities/activity.csv",
                 "steps": [
                     "load",
                     "preprocess"
@@ -14,7 +14,7 @@
             {
                 "name": "contact",
                 "type": "static",
-                "path": "./samples/input_data/contact.csv",
+                "path": "./samples/input_data/Actual/FewerEntities/contact.csv",
                 "steps": [
                     "load",
                     "preprocess"
@@ -28,7 +28,7 @@
             {
                 "name": "ownership",
                 "type": "static",
-                "path": "./samples/input_data/ownership.csv",
+                "path": "./samples/input_data/Actual/FewerEntities/ownership.csv",
                 "steps": [
                     "load",
                     "preprocess"
@@ -38,7 +38,7 @@
             {
                 "name": "entity",
                 "type": "entity",
-                "path": "./samples/input_data/entityweight.csv",
+                "path": "./samples/input_data/Actual/FewerEntities/entity.csv",
                 "steps": [
                     "load"
                 ]
@@ -46,10 +46,10 @@
             {
                 "name": "entityReviewFlag",
                 "type": "reviewflag",
-                "path": "./samples/input_data/redflag.csv",
+                "path": "./samples/input_data/Actual/FewerEntities/redflags.csv",
                 "metadata": {
                     "type": "reviewflagmetadata",
-                    "path": "./samples/input_data/flag_definitions.csv"
+                    "path": "./samples/input_data/Actual/FewerEntities/redflag_definitions.csv"
                 },
                 "steps": [
                     "load",
@@ -59,7 +59,7 @@
             {
                 "name": "attributeDefinition",
                 "type": "metadata",
-                "path": "./samples/input_data/attribute_definitions.csv",
+                "path": "./samples/input_data/Actual/FewerEntities/attribute_definitions.csv",
                 "steps": [
                     "load"
                 ]

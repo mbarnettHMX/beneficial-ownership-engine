@@ -10,25 +10,28 @@ authors = [
     "Gaudy Blanco Meneses <gaudyb@microsoft.com>",
     "Monica Carvajal <nathan.evans@microsoft.com>",
     "Chris Trevino <chris.trevino@microsoft.com>",
+    "Michael W Barnett <mbarnett@hmx.ai>"
     ]
 license = "MIT"
 packages = [{include = "transparency_engine"}]
 
 
 [tool.poetry.dependencies]
-python = "<3.10,>=3.8"
+python = "<3.11,>=3.10"
+pip = "^21.0"
 datasketch = "^1.5.8"
 faker = "^16.1.0"
-faiss-cpu = "^1.7.3"
-graspologic = "^2.0.1"
+faiss-cpu = "^1.7.4"
+graspologic = "^3.4.1"
 kneed = "^0.8.2"
-pyspark = "3.2.2"
+pyspark = "3.3.0"
 numpy = "^1.22.0"
 redis = {extras = ["hiredis"], version = "^4.4.2"}
 dependency-injector = "^4.41.0"
 pydantic = "^1.10.4"
 networkx = "^3.0"
-
+fuzzywuzzy = {extras = ["speedup"], version = "^0.18.0"}
+hmx_library = "^1.1.0"
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "^0.18.0"
@@ -60,7 +63,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.isort]
-py_version = 36
+py_version = 310
 profile = "black"
 force_single_line = false
 combine_as_imports = true
@@ -71,7 +74,7 @@ extend_skip = ["setup.py"]
 
 
 [tool.black]
-target-version = ['py36']
+target-version = ['py310']
 force-exclude = '''
 .*/setup\.py$
 '''

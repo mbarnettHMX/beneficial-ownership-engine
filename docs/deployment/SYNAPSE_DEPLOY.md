@@ -8,7 +8,7 @@ We will need:
 
 - [Windows Store Ubuntu 22.04 LTS](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW)
 - [Visual Studio Code](https://visualstudio.microsoft.com/downloads/)
-- [Python 3.8](https://www.python.org/downloads/release/python-380/)
+- [Python 3.10](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-us&gl=US), which is required for use with Azure Spark 3.3.
 
 ---
 
@@ -25,7 +25,7 @@ The pip package manager is required to install the Poetry tool. To install pip i
 py get-pip.py
 ```
 
-If you want to upgrade your existing pip installation, you can do so by running the following command:
+Upgrade your existing pip installation by running the following command:
 
 ``` powershell
 python -m pip install --upgrade pip
@@ -49,11 +49,11 @@ The Poetry package, a tool for dependency management and packaging in Python, is
 poetry --version
 ```
 
-If Poetry has been successfully installed, you should see its version number printed in the terminal.
+If Poetry has been successfully installed, you should see its version number (Poetry version 1.8.4 is required) printed in the terminal.
 
 ## Generate wheel file
 
-After installing python 3.8, pip, and Poetry, run the following commands from the PowerShell terminal in your VS Code.
+After installing python 3.8, pip, and Poetry, in Power Shell navigate to the folder containing the Beneficial Ownership Engine code (the top level, e.g. "C:\Users\<username>\Documents\GitHub\ACTS-Beneficial-Ownership-Engine") and type `code .` to start Visual Studio Code from that folder. Next, run the following commands from a Power Shell terminal in your VS Code.
 
 ``` powershell
     cd .\python\transparency-engine\
@@ -96,6 +96,14 @@ In the Ubuntu 22.04(WSL) terminal opened in the 'Connect to Ubuntu WSL with VS C
     az account set --subscription mysubscriptionID
 ```
 
+NOTES:
+>1. If the `az login` command does not open a browser for authentication, use the `az login --use-device-code` command, which provides a code and a URL that you can open in any browser on your host machine.
+>2. Depending on the version of the CLI installed, you may not need to enter the 'az account...' command. In later versions the subscriptions to which you have access are shown in a numbered list, and you simply enter the number for the desired subscription.
+
+## Check the Poetry whl File
+
+If you made changes to the pyproject.toml file that is used by Poetry to create the whl file, use the `poetry lock` command to ensure all dependencies are valid. 
+
 ## Set Terraform variables
 
 In the file named terraform.tfvars in the 'synapse_deploy' folder, change the values of the following variables:
@@ -112,10 +120,82 @@ Next, run the following commands:
     terraform -chdir=synapse_deploy apply --auto-approve
 ```
 
-Once these commands complete you will see a success message indicating that the resources are deployed. If you encounter errors while deploying, the Terraform commands above can be re-applied, and this may resolve the errors encountered.
+The tarraform apply command will take several minutes to complete and you will see a success message ('Apply complete! Resources: 13 added, 0 changed, 0 destroyed.') indicating that the Azure resources are deployed. If you encounter errors while deploying, correct the error(s) then reenter the commands above. Terraform commands are idempotent; they can be applied multiple times without changing the result beyond the initial application.
+
+## Install the Required Beneficial Ownership Packages
+
+The Spark Pool deployed for the Beneficial Ownership Engine references Python module 'transparency_engine'. The deployment of Azure services created the required 'transparency_engine-0.1.0-py3-none-any.whl' file containing the required modules, and the terraform apply command should have added to the Packages configuration of the Spark Pool. If not, check that the terraform apply did not log errors related to the whl file. If the whl file is correct but was not added to the Packages configuration of the Spark Pool follow these steps to ensure that the Spark pool has the required transparency-engine modules:
+
+>1. In Synapse Studio, select the 'Manage; icon in the left-hand panel, then select 'Apache Spark pools' item in the list. This will display the available Spark pools.
+>2. Mouse over the row with the name of your Spark pool and right-click the '...' and select 'Packages'. This will display the Packages dialog on the right.
+>3. Under 'Workspace packages' click the + and from the 'Select from workspace packages', select the 'transparency_engine-0.1.0-py3-none-any.whl' file, then select Apply.
+
+The change in configuration batch job may take several minutes, and you can monitor the progress of the batch job by selecting the Monitor icon on the left-hand side of Synapse Studio, then selecting 'Apache Spark applications'. Refresh the list to confirm that the 'Status' is 'Completed'.
+
+## Run the Notebook
+
+If the above deployment and configuration is complete, you can run the Beneficial Ownership Engine following these steps:
+
+>1. In Synapse Studio, navigate to the Notebooks by clicking on the 'Develop' icon on the left-hand side, the select the Beneficial_Ownership_Engine notebook. This will display the notebook on in Synapse Studio.
+>2. Edit the code panel labelled "Manually Update SubFolderpath for this Run" including the 'subfolderpath', 'datecountry' and 'storagename'. These correspond, respectively, to the subfolder in the 'curated' container of the Storage Account created in the Beneficial Ownership Engine deployment, a name that will be used as a folder name for the results, and the name of the Storage Account created in the Beneficial Ownership Engine deployment.
+>3. Upload the seven required input data files. Refer to [Input Data Requirements](./BeneficialOwnershipEngine-InputDataDescriptions.pptx) for information on how to prepare these input data files, or use the synthetic test data files input files provided in the `transparency-engine\samples\input_data` folder.
+>4. In the second panel under the Pipeline Configurations section of the Notebook, check file names (do not change the paths) of the input data files selected in the previous step.
+>5. Publish the changed you by clicking 'Publish all' at the top of the Notebook, then select 'Run all'
+
+It may take several minutes for the Spark pools to be initialized and, as with any Python Notebook, you can check progress of execution and see any errors by scrolling down through the Notebook.
+
+The complete list of 32 folders (containing parquet file(s)) generated by the Beneficial Ownership Engine upon successful completion of code in the notebook are as follows:
+
+```
+06/18/2024  01:17 PM    <DIR>          activity
+06/18/2024  10:58 PM    <DIR>          activity_filtered_graph
+06/18/2024  10:58 PM    <DIR>          activity_filtered_links
+06/18/2024  10:45 PM    <DIR>          activity_links
+06/18/2024  01:21 PM    <DIR>          activity_prep
+06/18/2024  01:48 PM    <DIR>          attributeDefinition
+06/18/2024  01:48 PM    <DIR>          attributeDefinition_prep
+06/18/2024  01:21 PM    <DIR>          contact
+06/18/2024  01:35 PM    <DIR>          contact_fuzzy_match
+06/18/2024  01:54 PM    <DIR>          contact_links
+06/18/2024  01:43 PM    <DIR>          contact_prep
+06/18/2024  01:46 PM    <DIR>          entity
+06/18/2024  01:46 PM    <DIR>          entityReviewFlag
+06/18/2024  01:46 PM    <DIR>          entityReviewFlag_metadata
+06/18/2024  01:48 PM    <DIR>          entityReviewFlag_prep
+06/20/2024  08:45 PM    <DIR>          entity_activity_link_report
+06/20/2024  08:32 PM    <DIR>          entity_activity_report
+06/20/2024  08:45 PM    <DIR>          entity_attributes_report
+06/20/2024  08:46 PM    <DIR>          entity_graph_report
+06/18/2024  01:46 PM    <DIR>          entity_prep
+06/20/2024  08:45 PM    <DIR>          entity_related_activity_overall_report
+06/20/2024  08:40 PM    <DIR>          entity_related_activity_report
+06/20/2024  06:41 PM    <DIR>          entity_scoring
+06/20/2024  08:34 PM    <DIR>          entity_temporal_activity_report
+06/20/2024  08:52 PM    <DIR>          html_report
+06/20/2024  06:39 PM    <DIR>          macro_filtered_links
+06/18/2024  11:04 PM    <DIR>          macro_links
+06/20/2024  06:44 PM    <DIR>          network_scoring
+06/18/2024  01:43 PM    <DIR>          ownership
+06/18/2024  02:00 PM    <DIR>          ownership_links
+06/18/2024  01:46 PM    <DIR>          ownership_prep
+06/20/2024  08:52 PM    <DIR>          report_url
+```
+
+Of these generated files, 10 are required by the Power BI files provided in the '\powerbi\' folder:
+
+- entity_activity_report
+- entity_attributes_report
+- entity_graph_report
+- entityReviewFlag
+- entityreviewflag_metadata
+- network_scoring
+- entity_temporal_activity_report
+- entity_related_activity_report
+- entity_related_activity_overall_report
+- report_url
 
 ## Install the Azure Kubernetes Web App
 
-The Beneficial Ownership Engine uses an API to Kubernetes web application for generation of HTML reports accessible from the Power BI template, Entity Ranking report. Follow the instructions in the [AKS Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/AKS_DEPLOY.md) to deploy the required web application.
+The Beneficial Ownership Engine uses an API to a Kubernetes web application for generation of HTML reports accessible from the Power BI template, Entity Ranking report. Follow the instructions in the [AKS Deployment Instructions](https://github.com/mbarnettHMX/beneficial-ownership-engine/blob/main/docs/deployment/AKS_DEPLOY.md) to deploy the required web application.
 
 This completes the Synapse deployment required for the Beneficial Ownership Engine.

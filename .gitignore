@@ -76,3 +76,5 @@ python/transparency-engine/samples/config/steps.json
 python/transparency-engine/samples/config/steps.json
 python/transparency-engine/samples/config/steps.json
 python/transparency-engine/samples/config/steps.json
+
+python/transparency-engine/samples/input_data/*
